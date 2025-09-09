@@ -15,7 +15,6 @@
 #     not((a or b) and not(b or not a or not b))
 # main()
 
-
 # a and True
 # a and False
 # a or (not a)
