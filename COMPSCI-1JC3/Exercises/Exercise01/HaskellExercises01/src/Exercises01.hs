@@ -38,6 +38,7 @@ macid = "TODO"
 --
 -- NOTE: YOU ARE FREE TO USE FUNCTIONs AFTER THEY'VE BEEN DEFINED.
 
+
 -- Exercise A
 --------------------------------------------------------------------------------
 -- Implement the Prelude function last (which returns the last element of a
