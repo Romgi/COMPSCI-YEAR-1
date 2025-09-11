@@ -4,12 +4,15 @@
 #PascalCase - WrittenLikeThis
 #kebab-case - written-like-this (not used in Python)
 
-def calc_tax(income):
-    return income*0.4
+tax_rate = 0.2
 
+def calc_tax(income):
+    return income*tax_rate
+
+calc_tax(10000)
 
 def get_income(tax):
-    return tax/0.4
+    return tax/tax_rate
 
 
 def get_amount_owed(tax_paid, income):
