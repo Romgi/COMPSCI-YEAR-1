@@ -1,3 +1,9 @@
+#Cases for variable and method names:
+#camelCase - writtenLikeThis
+#snake_case - written_like_this
+#PascalCase - WrittenLikeThis
+#kebab-case - written-like-this (not used in Python)
+
 def calc_tax(income):
     return income*0.4
 
