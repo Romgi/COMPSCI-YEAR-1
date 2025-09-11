@@ -30,7 +30,7 @@ import Prelude hiding (last,init,(!!))
 -------------------------------------------------------------------------------
 
 macid :: String
-macid = "TODO"
+macid = "graydj1"
 
 -- NOTE: THE PRELUDE FUNCTIONS YOU'RE REQUIRED TO IMPLEMENT HAVE BEEN REMOVED.
 --       HOWEVER OTHER PRELUDE FUNCTIONS ARE STILL AVAILABLE, E.G.
@@ -45,7 +45,7 @@ macid = "TODO"
 -- list) using a combination of other available Prelude functions
 --------------------------------------------------------------------------------
 last :: [a] -> a
-last xs = error "TODO implement last"
+last xs = head(reverse xs)
 
 -- Exercise B
 --------------------------------------------------------------------------------
@@ -53,7 +53,7 @@ last xs = error "TODO implement last"
 -- element removed) using a combination of other available Prelude functions
 --------------------------------------------------------------------------------
 init :: [a] -> [a]
-init xs = error "TODO implement init"
+init xs = reverse(tail(reverse xs))
 
 -- Exercise C
 --------------------------------------------------------------------------------
