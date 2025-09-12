@@ -53,15 +53,17 @@ def is_odd(n):
 
 #Returns true if and only if n a multiple of m
 def is_multiple_of(n, m):
-    #TODO
-    return
+    return n % m == 0
 
 
 #Adults eat 3 slices each, children eat 1 slice each, a pizza has 8 slices
 #Returns the number of pizzas that must be ordered to feed the group
+adults_slices = 3
+children_slices = 1
 def pizzas_to_order(adults, children):
-    total_slices = adults*3 + children 
-    return -(-total_slices//8)
+    total_slices = adults*adults_slices + children*children_slices
+    pizzas_to_order = total_slices // 8
+    return pizzas_to_order
 
 
 """
