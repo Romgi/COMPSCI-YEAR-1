@@ -16,8 +16,7 @@ def get_income(tax):
 
 
 def get_amount_owed(tax_paid, income):
-    #TODO
-    return
+    return calc_tax(income) - tax_paid
 
 
 def f1(x):
