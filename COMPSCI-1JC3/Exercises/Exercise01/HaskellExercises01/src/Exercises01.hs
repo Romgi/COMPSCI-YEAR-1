@@ -67,7 +67,7 @@ init xs = reverse(tail(reverse xs))
 -- xs !! 4 == ERROR
 --------------------------------------------------------------------------------
 (!!) :: [a] -> Int -> a
-xs !! n = error "TODO implement !!"
+xs !! n = head(drop n xs)
 
 -- Exercise D
 --------------------------------------------------------------------------------
@@ -80,10 +80,10 @@ xs !! n = error "TODO implement !!"
 -- elements from the list.
 --------------------------------------------------------------------------------
 firstHalf :: [a] -> [a]
-firstHalf xs = error "TODO implement firstHalf"
+firstHalf xs = take (length xs `div` 2) xs
 
 lastHalf :: [a] -> [a]
-lastHalf xs = error "TODO implement lastHalf"
+lastHalf xs = drop (length xs `div` 2) xs
 
 -- Exercise E
 --------------------------------------------------------------------------------
@@ -98,7 +98,7 @@ lastHalf xs = error "TODO implement lastHalf"
 --------------------------------------------------------------------------------
 inners :: [a] -> [a]
 inners [] = []
-inners xs = error "TODO implement inners"
+inners xs = tail(init xs)
 
 -- Exercise F
 --------------------------------------------------------------------------------
@@ -107,7 +107,7 @@ inners xs = error "TODO implement inners"
 -- details
 --------------------------------------------------------------------------------
 distance :: (Float,Float) -> (Float,Float) -> Float
-distance (p1,p2) (q1,q2) = error "TODO implement distance"
+distance (p1,p2) (q1,q2) = sqrt((p1-q1) ** 2 + (p2 - q2)^2)
 
 -- Exercise F
 --------------------------------------------------------------------------------
@@ -120,4 +120,4 @@ distance (p1,p2) (q1,q2) = error "TODO implement distance"
 --       integers to a floating point
 --------------------------------------------------------------------------------
 nthRoot :: Float -> Int -> Float
-nthRoot x n = error "TODO implement nthRoot"
+nthRoot x n = x ** (1/fromIntegral n)
