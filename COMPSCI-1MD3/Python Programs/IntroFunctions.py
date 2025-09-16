@@ -66,7 +66,7 @@ def pizzas_to_order(adults, children):
     return pizzas_to_order
 
 
-"""
+
 x = 5
 def my_fun(y):
     return y + x
@@ -75,25 +75,20 @@ def my_fun(y):
 #What is >>> y?
 
 
-
-"""
-"""
 y = 5
 def my_fun(y):
     y = y + 1
     return y 
 #What is >>> my_fun(6)?
 #What is >>> y?
-"""
 
-"""
+
 y = 5
 def my_fun(y):
     x = y
     return x + 2*y 
 #What is >>> my_fun(6)?
 #What is >>> x?
-"""
 
 
 y = 5
@@ -105,7 +100,6 @@ def my_fun(x):
 #What is >>> y
 
 
-"""
 x = 2
 def f(x, y):
     z = x + y
@@ -116,7 +110,7 @@ def f(x, y):
 def g(y, z):
     return x + y - z
 #What is >>> f(1, 2)?
-"""
+
 
 
 def f(x, y):
