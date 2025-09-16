@@ -62,7 +62,7 @@ adults_slices = 3
 children_slices = 1
 def pizzas_to_order(adults, children):
     total_slices = adults*adults_slices + children*children_slices
-    pizzas_to_order = total_slices // 8
+    pizzas_to_order = total_slices // 8 +  min(1, total_slices % 8)
     return pizzas_to_order
 
 
