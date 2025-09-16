@@ -104,12 +104,10 @@ x = 2
 def f(x, y):
     z = x + y
     return g(z, x)
-
-
-
 def g(y, z):
     return x + y - z
 #What is >>> f(1, 2)?
+# = 4
 
 
 
