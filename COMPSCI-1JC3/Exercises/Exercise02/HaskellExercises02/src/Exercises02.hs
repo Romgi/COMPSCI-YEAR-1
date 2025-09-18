@@ -30,7 +30,7 @@ import Prelude hiding ((||),(&&),abs)
 --------------------------------------------------------------------------------
 
 macid :: String
-macid = "TODO"
+macid = "graydj1"
 
 -- NOTE: For the boolean exercises, you can find reference truth tables on
 -- Wikipedia: https://en.wikipedia.org/wiki/Truth_table
@@ -43,28 +43,33 @@ macid = "TODO"
 -- just don't change the type declaration.
 --------------------------------------------------------------------------------
 (||) :: Bool -> Bool -> Bool
-x || y = error "TODO implement ||"
+False || False = False
+_ || _ = True
 
 -- Exercise B
 --------------------------------------------------------------------------------
 -- Implement Logical NAND using pattern matching. NAND is the negation of AND.
 --------------------------------------------------------------------------------
 nand :: Bool -> Bool -> Bool
-nand x y = error "TODO: implement nand"
+nand True True = False
+nand _ _ = True
 
 -- Exercise C
 --------------------------------------------------------------------------------
 -- Implement Logical implication using pattern matching
 --------------------------------------------------------------------------------
 (==>) :: Bool -> Bool -> Bool
-x ==> y = error "TODO implement ==>"
+True ==> False = False
+_ ==>_ = True
 
 -- Exercise D
 --------------------------------------------------------------------------------
 -- Implement the function absVal that returns the absolute value of a number
 --------------------------------------------------------------------------------
 absVal :: (Num a, Ord a) => a -> a
-absVal x = error "TODO implement absVal"
+absVal x 
+ | x < 0 = -x
+ | otherwise = x
 
 -- Exercise E
 --------------------------------------------------------------------------------
@@ -76,15 +81,19 @@ absVal x = error "TODO implement absVal"
 -- different contexts.
 --------------------------------------------------------------------------------
 (~=) :: (Floating a,Ord a) => a -> a -> Bool
-x ~= y = error "TODO implement ~="
-
+x ~= y = if (x - y) < 1e-4 then
+  if (y - x) < 1e-4 then True else False
+  else False
 -- Exercise F
 --------------------------------------------------------------------------------
 -- Implement a function rotate that moves the first element of a list to the
 -- back. If the list is empty or has one element, it should remain unchanged.
 --------------------------------------------------------------------------------
 rotate :: [a] -> [a]
-rotate xs = error "TODO implement rotate"
+rotate xs = case xs of
+  [] -> []
+  [x] -> [x]
+  (x:xs) -> xs ++ [x]
 
 -- Exercise G
 --------------------------------------------------------------------------------
@@ -95,4 +104,4 @@ rotate xs = error "TODO implement rotate"
 -- squaring.
 --------------------------------------------------------------------------------
 squares :: Num a => [a] -> [a]
-squares xs = error "TODO implement squares"
+squares xs = map (\x -> x * x) xs

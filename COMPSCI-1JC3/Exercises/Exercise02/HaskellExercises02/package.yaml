@@ -23,6 +23,7 @@ dependencies:
 - hspec
 
 library:
+  exposed-modules: Exercises02
   source-dirs: src
 
 tests:

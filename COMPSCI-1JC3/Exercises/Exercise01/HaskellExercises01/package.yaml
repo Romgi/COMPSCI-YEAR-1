@@ -15,6 +15,7 @@ dependencies:
 - hspec
 
 library:
+  exposed-modules: HaskellExercises01
   source-dirs: src
 
 tests:
