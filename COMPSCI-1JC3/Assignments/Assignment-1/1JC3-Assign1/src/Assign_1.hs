@@ -41,7 +41,7 @@ x === y =
  - cubicQ
  - -----------------------------------------------------------------
  - Description:
- -   TODO add comments
+ -   Calculates the value of Q for a cubic equation
  -}
 cubicQ :: Rational -> Rational -> Rational -> Rational
 cubicQ a b c = (3*a*c - b^^2) / (9*a^^2)
@@ -50,7 +50,7 @@ cubicQ a b c = (3*a*c - b^^2) / (9*a^^2)
  - cubicR
  - -----------------------------------------------------------------
  - Description:
- -   TODO add comments
+ -   Calculates the value of R for a cubic equation
  -}
 cubicR :: Rational -> Rational -> Rational -> Rational -> Rational
 cubicR a b c d = (9*a*b*c - 27*a^^2*d - 2*b^^3) / (54*a^^3)
@@ -59,7 +59,7 @@ cubicR a b c d = (9*a*b*c - 27*a^^2*d - 2*b^^3) / (54*a^^3)
  - cubicDiscSign
  - -----------------------------------------------------------------
  - Description:
- -   TODO add comments
+ -   Calculates the sign of the discriminant for a cubic equation
  -}
 cubicDiscSign :: Rational -> Rational -> Int
 cubicDiscSign q r =
@@ -70,7 +70,7 @@ cubicDiscSign q r =
  - cubicS
  - -----------------------------------------------------------------
  - Description:
- -   TODO add comments
+ -   Calculates the value of s for a cubic equation
  -}
 cubicS :: Rational -> Rational -> Double
 cubicS q r = (fromRational r + sqrt(fromRational (q^^3 + r^^2))) ** (1/3)
@@ -79,16 +79,16 @@ cubicS q r = (fromRational r + sqrt(fromRational (q^^3 + r^^2))) ** (1/3)
  - cubicT
  - -----------------------------------------------------------------
  - Description:
- -   TODO add comments
+ -   Calculates the value of t for a cubic equation
  -}
 cubicT :: Rational -> Rational -> Double
 cubicT q r = (fromRational r - sqrt(fromRational (q^^3 + r^^2))) ** (1/3)
 
 {- -----------------------------------------------------------------
- - findRootX2
+ - findRootX1
  - -----------------------------------------------------------------
  - Description:
- -   TODO add comments
+ -   Calculates the first solution for a cubic equation
  -}
 findRootX1 :: Rational -> Rational -> Rational -> Rational -> Double
 findRootX1 a b c d =
@@ -102,7 +102,7 @@ findRootX1 a b c d =
  - findRootX2
  - -----------------------------------------------------------------
  - Description:
- -   TODO add comments
+ -   Calculates the second solution for a cubic equation
  -}
 findRootX2 :: Rational -> Rational -> Rational -> Rational -> Double
 findRootX2 a b c d =
@@ -116,7 +116,7 @@ findRootX2 a b c d =
  - cubicRealSolutions
  - -----------------------------------------------------------------
  - Description:
- -   TODO add comments
+ -   Determines how many solutions to the cubic equation there are and returns the real solutions
  -}
 cubicRealSolutions :: Rational -> Rational -> Rational -> Rational -> [Double]
 cubicRealSolutions a b c d
