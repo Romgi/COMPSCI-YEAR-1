@@ -96,7 +96,7 @@ findRootX1 a b c d =
       r = cubicR a b c d
       s = cubicS q r
       t = cubicT q r
-  in s + t - (fromRational b) / (3 * fromRational a)
+  in s + t - fromRational b / (3 * fromRational a)
 
 {- -----------------------------------------------------------------
  - findRootX2
@@ -110,7 +110,7 @@ findRootX2 a b c d =
       r = cubicR a b c d
       s = cubicS q r
       t = cubicT q r
-  in -((s+t)/2) - (fromRational b) / (3 * fromRational a)
+  in -((s+t)/2) - fromRational b / (3 * fromRational a)
 
 {- -----------------------------------------------------------------
  - cubicRealSolutions
@@ -138,12 +138,12 @@ cubicRealSolutions a b c d
  -}
 
 -- Test cases for cubicQ
-test_cubicQ1 = cubicQ 1 2 3        -- Expected:
-test_cubicQ2 = cubicQ 2 4 8        -- Expected:
+test_cubicQ1 = cubicQ 1 2 3        -- Expected: TODO
+test_cubicQ2 = cubicQ 2 4 8        -- Expected: TODO
 
 -- Test cases for cubicR
-test_cubicR1 = cubicR 1 2 3 4      -- Expected:
-test_cubicR2 = cubicR 2 4 8 16     -- Expected: 
+test_cubicR1 = cubicR 1 2 3 4      -- Expected: TODO
+test_cubicR2 = cubicR 2 4 8 16     -- Expected: TODO
 
 -- Test cases for cubicDiscSign
 test_cubicDiscSign1 = cubicDiscSign 1 2   -- Expected: 1
@@ -151,18 +151,18 @@ test_cubicDiscSign2 = cubicDiscSign 0 0   -- Expected: 0
 test_cubicDiscSign3 = cubicDiscSign (-2) 0 -- Expected: -1
 
 -- Test cases for cubicS and cubicT
-test_cubicS1 = cubicS 1 2    -- Should compute (2 + sqrt(1+4)) ** (1/3)
-test_cubicT1 = cubicT 1 2    -- Should compute (2 + sqrt(1+4)) ** (1/3)
+test_cubicS1 = cubicS 1 2    -- Should compute TODO
+test_cubicT1 = cubicT 1 2    -- Should compute TODO
 
 -- Example test for cubicRealSolutions
 -- Roots of x^3 - 6x^2 + 11x - 6 = 0 are 1, 2, 3
-test_cubicRealSolutions1 = cubicRealSolutions 1 (-6) 11 (-6)  -- Should return [1.0,2.0,3.0]
+test_cubicRealSolutions1 = cubicRealSolutions 1 (-6) 11 (-6)  -- Should return [TODO]
 
 -- Roots of x^3 + 3x^2 + 3x + 1 = 0 is -1 (triple root)
-test_cubicRealSolutions2 = cubicRealSolutions 1 3 3 1         -- Should return [-1.0]
+test_cubicRealSolutions2 = cubicRealSolutions 1 3 3 1         -- Should return [TODO]
 
 -- Roots of x^3 - 3x + 2 = 0 are -2, 1, 1
-test_cubicRealSolutions3 = cubicRealSolutions 1 0 (-3) 2      -- Should return [-2.0,1.0,1.0]
+test_cubicRealSolutions3 = cubicRealSolutions 1 0 (-3) 2      -- Should return [TODO]
 
 -- Roots of x^3 + x + 1 = 0
-test_cubicRealSolutions4 = cubicRealSolutions 1 0 1 1         -- Should return [about -0.6826]
+test_cubicRealSolutions4 = cubicRealSolutions 1 0 1 1         -- Should return [TODO]
