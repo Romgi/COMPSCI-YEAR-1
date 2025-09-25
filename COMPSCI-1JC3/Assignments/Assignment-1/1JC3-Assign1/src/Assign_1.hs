@@ -24,10 +24,10 @@ module Assign_1 where
 -- 4) REPLACE macid = "TODO" WITH YOUR ACTUAL MACID (EX. IF YOUR MACID IS jim THEN macid = "jim")
 -----------------------------------------------------------------------------------------------------------
 
--- Name: TODO add name
--- Date: TODO add date
+-- Name: Jonathan Graydon
+-- Date: September 25, 2025
 macid :: String
-macid = "TODO"
+macid = "graydj1"
 
 (***) :: Double -> Double -> Double
 x *** y = if x >= 0 then x ** y else -((-x) ** y)
@@ -44,7 +44,7 @@ x === y =
  -   TODO add comments
  -}
 cubicQ :: Rational -> Rational -> Rational -> Rational
-cubicQ a b c = error "TODO"
+cubicQ a b c = (3*a*c - b^^2) / (9*a^^2)
 
 {- -----------------------------------------------------------------
  - cubicR
@@ -53,7 +53,7 @@ cubicQ a b c = error "TODO"
  -   TODO add comments
  -}
 cubicR :: Rational -> Rational -> Rational -> Rational -> Rational
-cubicR a b c d = error "TODO"
+cubicR a b c d = (9*a*b*c - 27*a^^2*d - 2*b^^3) / (54*a^^3)
 
 {- -----------------------------------------------------------------
  - cubicDiscSign
@@ -64,7 +64,7 @@ cubicR a b c d = error "TODO"
 cubicDiscSign :: Rational -> Rational -> Int
 cubicDiscSign q r =
   let disc = q^^3 + r^^2
-  in error "TODO"
+  in if disc < 0 then -1 else if disc == 0 then 0 else 1
 
 {- -----------------------------------------------------------------
  - cubicS
@@ -73,7 +73,7 @@ cubicDiscSign q r =
  -   TODO add comments
  -}
 cubicS :: Rational -> Rational -> Double
-cubicS q r = error "TODO"
+cubicS q r = (fromRational r + sqrt(fromRational (q^^3 + r^^2))) ** (1/3)
 
 {- -----------------------------------------------------------------
  - cubicT
@@ -82,7 +82,7 @@ cubicS q r = error "TODO"
  -   TODO add comments
  -}
 cubicT :: Rational -> Rational -> Double
-cubicT q r = error "TODO"
+cubicT q r = (fromRational r + sqrt(fromRational (q^^3 + r^^2))) ** (1/3)
 
 {- -----------------------------------------------------------------
  - cubicRealSolutions
@@ -93,8 +93,8 @@ cubicT q r = error "TODO"
 cubicRealSolutions :: Rational -> Rational -> Rational -> Rational -> [Double]
 cubicRealSolutions a b c d
   | a == 0      = []
-  | sign == -1  = error "TODO"
-  | sign ==  0  = error "TODO"
+  | sign == -1  = []
+  | sign ==  0  = []
   | sign ==  1  = error "TODO"
   | otherwise   = []
   where
@@ -109,4 +109,32 @@ cubicRealSolutions a b c d
  - -----------------------------------------------------------------
  -}
 
--- TODO: Add Test Cases for each of your functions below here
+-- Test cases for cubicQ
+test_cubicQ1 = cubicQ 1 2 3        -- Expected:
+test_cubicQ2 = cubicQ 2 4 8        -- Expected:
+
+-- Test cases for cubicR
+test_cubicR1 = cubicR 1 2 3 4      -- Expected:
+test_cubicR2 = cubicR 2 4 8 16     -- Expected: 
+
+-- Test cases for cubicDiscSign
+test_cubicDiscSign1 = cubicDiscSign 1 2   -- Expected: 1
+test_cubicDiscSign2 = cubicDiscSign 0 0   -- Expected: 0
+test_cubicDiscSign3 = cubicDiscSign (-2) 0 -- Expected: -1
+
+-- Test cases for cubicS and cubicT
+test_cubicS1 = cubicS 1 2    -- Should compute (2 + sqrt(1+4)) ** (1/3)
+test_cubicT1 = cubicT 1 2    -- Should compute (2 + sqrt(1+4)) ** (1/3)
+
+-- Example test for cubicRealSolutions
+-- Roots of x^3 - 6x^2 + 11x - 6 = 0 are 1, 2, 3
+test_cubicRealSolutions1 = cubicRealSolutions 1 (-6) 11 (-6)  -- Should return [1.0,2.0,3.0]
+
+-- Roots of x^3 + 3x^2 + 3x + 1 = 0 is -1 (triple root)
+test_cubicRealSolutions2 = cubicRealSolutions 1 3 3 1         -- Should return [-1.0]
+
+-- Roots of x^3 - 3x + 2 = 0 are -2, 1, 1
+test_cubicRealSolutions3 = cubicRealSolutions 1 0 (-3) 2      -- Should return [-2.0,1.0,1.0]
+
+-- Roots of x^3 + x + 1 = 0
+test_cubicRealSolutions4 = cubicRealSolutions 1 0 1 1         -- Should return [about -0.6826]
