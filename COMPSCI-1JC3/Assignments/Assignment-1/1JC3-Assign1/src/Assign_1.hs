@@ -82,7 +82,35 @@ cubicS q r = (fromRational r + sqrt(fromRational (q^^3 + r^^2))) ** (1/3)
  -   TODO add comments
  -}
 cubicT :: Rational -> Rational -> Double
-cubicT q r = (fromRational r + sqrt(fromRational (q^^3 + r^^2))) ** (1/3)
+cubicT q r = (fromRational r - sqrt(fromRational (q^^3 + r^^2))) ** (1/3)
+
+{- -----------------------------------------------------------------
+ - findRootX2
+ - -----------------------------------------------------------------
+ - Description:
+ -   TODO add comments
+ -}
+findRootX1 :: Rational -> Rational -> Rational -> Rational -> Double
+findRootX1 a b c d =
+  let q = cubicQ a b c
+      r = cubicR a b c d
+      s = cubicS q r
+      t = cubicT q r
+  in s + t - (fromRational b) / (3 * fromRational a)
+
+{- -----------------------------------------------------------------
+ - findRootX2
+ - -----------------------------------------------------------------
+ - Description:
+ -   TODO add comments
+ -}
+findRootX2 :: Rational -> Rational -> Rational -> Rational -> Double
+findRootX2 a b c d =
+  let q = cubicQ a b c
+      r = cubicR a b c d
+      s = cubicS q r
+      t = cubicT q r
+  in -((s+t)/2) - (fromRational b) / (3 * fromRational a)
 
 {- -----------------------------------------------------------------
  - cubicRealSolutions
@@ -94,8 +122,8 @@ cubicRealSolutions :: Rational -> Rational -> Rational -> Rational -> [Double]
 cubicRealSolutions a b c d
   | a == 0      = []
   | sign == -1  = []
-  | sign ==  0  = []
-  | sign ==  1  = error "TODO"
+  | sign ==  0  = [findRootX1 a b c d, findRootX2 a b c d, findRootX2 a b c d]
+  | sign ==  1  = [findRootX1 a b c d]
   | otherwise   = []
   where
     sign = cubicDiscSign q r
