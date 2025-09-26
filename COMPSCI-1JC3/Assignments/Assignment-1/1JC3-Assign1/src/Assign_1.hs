@@ -124,35 +124,24 @@ cubicRealSolutions a b c d
  -}
 
 -- Test cases for cubicQ
-test_cubicQ1 = cubicQ 1 2 3        -- Expected: -1 % 9
-test_cubicQ2 = cubicQ 2 4 8        -- Expected: -8 % 36 = -2 % 9
+test_cubicQ1 = cubicQ 1 2 3
+test_cubicQ2 = cubicQ 2 4 8
 
 -- Test cases for cubicR
-test_cubicR1 = cubicR 1 2 3 4      -- Expected: -5 % 54
-test_cubicR2 = cubicR 2 4 8 16     -- Expected: -80 % 432 = -5 % 27
+test_cubicR1 = cubicR 1 2 3 4
+test_cubicR2 = cubicR 2 4 8 16
 
 -- Test cases for cubicDiscSign
-test_cubicDiscSign1 = cubicDiscSign 1 2    -- Expected: 1
-test_cubicDiscSign2 = cubicDiscSign 0 0    -- Expected: 0
-test_cubicDiscSign3 = cubicDiscSign (-2) 0 -- Expected: -1
+test_cubicDiscSign1 = cubicDiscSign 1 2
+test_cubicDiscSign2 = cubicDiscSign 0 0
+test_cubicDiscSign3 = cubicDiscSign (-2) 0
 
--- Test cases for cubicS and cubicT (values depend on floating point)
-test_cubicS1 = cubicS 1 2    -- Should be a real Double
-test_cubicT1 = cubicT 1 2    -- Should be a real Double
+-- Test cases for cubicS and cubicT
+test_cubicS1 = cubicS 1 2
+test_cubicT1 = cubicT 1 2
 
 -- Example tests for cubicRealSolutions
--- Roots of x^3 - 6x^2 + 11x - 6 = 0 are 1,2,3 (three distinct real roots)
--- But discriminant < 0, so expect []
-test_cubicRealSolutions1 = cubicRealSolutions 1 (-6) 11 (-6)  -- Expected: []
-
--- Roots of x^3 + 3x^2 + 3x + 1 = 0 is -1 (triple root)
--- Discriminant = 0, expect [-1,-1,-1]
-test_cubicRealSolutions2 = cubicRealSolutions 1 3 3 1         -- Expected: [-1.0,-1.0,-1.0]
-
--- Roots of x^3 - 3x + 2 = 0 are -2, 1, 1 (double root)
--- Discriminant = 0, expect [1, -2, -2] or similar depending on formula
-test_cubicRealSolutions3 = cubicRealSolutions 1 0 (-3) 2      -- Expected: [1.0,-2.0,-2.0]
-
--- Roots of x^3 + x + 1 = 0, only one real root ~ -0.6823
--- Discriminant > 0, expect [approx -0.6823]
-test_cubicRealSolutions4 = cubicRealSolutions 1 0 1 1         -- Expected: [-0.6823...]
+test_cubicRealSolutions1 = cubicRealSolutions 1 (-6) 11 (-6) 
+test_cubicRealSolutions2 = cubicRealSolutions 1 3 3 1
+test_cubicRealSolutions3 = cubicRealSolutions 1 0 (-3) 2
+test_cubicRealSolutions4 = cubicRealSolutions 1 0 1 1
