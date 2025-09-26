@@ -10,8 +10,7 @@ def encrypt_letter(letter: str, key: int) -> str:
     >>> encrypt_letter("t", 2)
     "v"
     """
-    #TODO
-    return
+    return chr(ord(letter) + key)
 
 
 def encrypt_message(message: str, key: int) -> str:
@@ -26,7 +25,11 @@ def encrypt_message(message: str, key: int) -> str:
     >>> encrypt_message("", 3)
     ""
     """
-    #TODO
+    new_message = ""
+    for char in message:
+        print(new_message)
+        new_message = new_message + encrypt_letter(char, key)
+    return new_message
         
     
         
