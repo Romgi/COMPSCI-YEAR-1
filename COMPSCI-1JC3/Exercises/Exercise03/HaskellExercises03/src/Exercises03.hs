@@ -54,7 +54,10 @@ data Tree a = Node a (Tree a) (Tree a)
    deriving (Show,Eq)
 
 exTree :: Tree Char
-exTree = error "TODO implement exTree"
+exTree = Node 'd'
+  (Node 'b'
+  (Leaf 'a')(Leaf 'c'))(Node 'f'
+                        (Leaf 'e')(Leaf 'g'))
 
 -- Exercise C
 --------------------------------------------------------------------------------
@@ -66,9 +69,13 @@ exTree = error "TODO implement exTree"
 data Nat = Zero | Succ Nat
          deriving (Show,Eq)
 
+add :: Nat -> Nat -> Nat
+add Zero n = n
+add (Succ m) n = Succ (add m n)
+
 mult :: Nat -> Nat -> Nat
-mult Zero n     = error "TODO implement mult"
-mult (Succ m) n = error "TODO implement mult"
+mult Zero n     = Zero
+mult (Succ m) n = add n (mult m n)
 
 -- Exercise D
 --------------------------------------------------------------------------------
@@ -79,8 +86,19 @@ mult (Succ m) n = error "TODO implement mult"
 -- is < all values in tree t1 start by defining functions that test if a value
 -- is less/greater than all the values in a tree.
 --------------------------------------------------------------------------------
+-- helper: get all values in a tree
+values :: Tree a -> [a]
+values (Leaf v)     = [v]
+values (Node v l r) = values l ++ [v] ++ values r
+
 isSearchTree :: Ord a => Tree a -> Bool
-isSearchTree tree = error "TODO implement isSearchTree"
+isSearchTree (Leaf _) = True
+isSearchTree (Node v l r) =
+  all (<= v) (values l) &&
+  all (>  v) (values r) &&
+  isSearchTree l &&
+  isSearchTree r
+
 
 -- Exercise E
 --------------------------------------------------------------------------------
@@ -91,7 +109,7 @@ isSearchTree tree = error "TODO implement isSearchTree"
 -- NOTE: using list comprehension gives a pretty neat solution.
 --------------------------------------------------------------------------------
 factors :: Int -> [Int]
-factors n = error "TODO implement factors"
+factors n = [x | x <- [2..(n-1)], n `mod` x == 0]
 
 -- Exercise F
 --------------------------------------------------------------------------------
@@ -104,4 +122,4 @@ factors n = error "TODO implement factors"
 -- NOTE: using list comprehensions gives a pretty neat solution.
 --------------------------------------------------------------------------------
 pivot :: Ord a => a -> [a] -> ([a],[a])
-pivot v xs = error "TODO implement pivot"
+pivot v xs = ([x | x <- xs, x <= v], [x | x <- xs, x > v])
