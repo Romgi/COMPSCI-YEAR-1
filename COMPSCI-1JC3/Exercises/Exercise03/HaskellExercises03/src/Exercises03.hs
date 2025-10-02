@@ -86,19 +86,18 @@ mult (Succ m) n = add n (mult m n)
 -- is < all values in tree t1 start by defining functions that test if a value
 -- is less/greater than all the values in a tree.
 --------------------------------------------------------------------------------
--- helper: get all values in a tree
-values :: Tree a -> [a]
-values (Leaf v)     = [v]
-values (Node v l r) = values l ++ [v] ++ values r
+isGreaterThanAll :: Ord a => a -> Tree a -> Bool
+isGreaterThanAll v (Leaf x) = v > x
+isGreaterThanAll v (Node x l r) = v > x && isGreaterThanAll v l && isGreaterThanAll v r
+
+isLessThanAll :: Ord a => a -> Tree a -> Bool
+isLessThanAll v (Leaf x) = v <= x
+isLessThanAll v (Node x l r) = v <= x && isLessThanAll v l && isLessThanAll v r
 
 isSearchTree :: Ord a => Tree a -> Bool
-isSearchTree (Leaf _) = True
-isSearchTree (Node v l r) =
-  all (<= v) (values l) &&
-  all (>  v) (values r) &&
-  isSearchTree l &&
-  isSearchTree r
-
+isSearchTree tree = case tree of
+  Leaf _ -> True
+  Node v l r -> isSearchTree l && isSearchTree r && isGreaterThanAll v l && isLessThanAll v r 
 
 -- Exercise E
 --------------------------------------------------------------------------------
