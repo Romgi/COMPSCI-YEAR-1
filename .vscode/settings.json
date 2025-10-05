@@ -1,0 +1,5 @@
+{
+    "python.analysis.extraPaths": [
+        "./COMPSCI-1MD3/Assignments/Assignment-0"
+    ]
+}

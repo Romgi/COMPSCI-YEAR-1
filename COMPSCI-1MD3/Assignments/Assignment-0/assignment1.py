@@ -15,9 +15,18 @@ def is_valid_number(num: str) -> bool:
     >>> is_valid_number("abc")
     False
     """
-    #TODO
-    return
 
+    if not num or num.count(".") > 1:
+        return False
+    elif num[0] == "-":
+        return is_valid_number(num[1:]) if num[1:] else False
+    elif "." in num:
+        left, right = num.split(".", 1)
+        return ((left == "" or left.isdecimal()) and (right == "" or right.isdecimal())
+                and (left.isdecimal() or right.isdecimal()))
+    else:
+        return num.isdecimal()
+    
 
 def is_valid_term(term: str) -> bool:
     """
@@ -39,8 +48,17 @@ def is_valid_term(term: str) -> bool:
     >>> is_valid_term("7x^ 8.8")
     False
     """
-    #TODO
-    return
+
+    if not term:
+        return False
+    elif "x^" in term:
+        left, right = term.split("x^", 1)
+        return is_valid_number(left) and right.isdigit() and right != "0"
+    elif term.endswith("x"):
+        return is_valid_number(term[:-1])
+    else:
+        return is_valid_number(term)
+
 
     
 def approx_equal(x: float, y: float, tol: float) -> bool:
@@ -56,8 +74,7 @@ def approx_equal(x: float, y: float, tol: float) -> bool:
     >>> approx_equal(0.999, 1, 0.0001)
     False
     """
-    #TODO
-    return
+    return abs(x - y) <= tol
 
 
 def degree_of(term: str) -> int:
@@ -72,8 +89,12 @@ def degree_of(term: str) -> int:
     >>> degree_of("252.192")
     0
     """
-    #TODO
-    return
+    if "x^" in term:
+        return int(term.split("x^", 1)[1])
+    elif term.endswith("x"):
+        return 1
+    else:
+        return 0
 
 
 def get_coefficient(term: str) -> float:
@@ -88,10 +109,13 @@ def get_coefficient(term: str) -> float:
     >>> get_coefficient("252.192")
     252.192
     """
-    #TODO
-    return
-
-
+    
+    if "x^" in term:
+        return float(term.split("x^", 1)[0])
+    elif term.endswith("x"):
+        return float(term[:-1])
+    else:
+        return float(term)
 
 #Do not worry about the code past this point. 
 #********************************************
