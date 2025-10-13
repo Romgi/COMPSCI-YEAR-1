@@ -28,7 +28,7 @@ import Prelude hiding (zip,take,drop)
 --    PART OF YOUR SCHOOL EMAIL (I.E. IF YOUR EMAIL IS "jim123@mcmaster.ca",
 --    THEN YOUR MACID IS "jim123").
 --------------------------------------------------------------------------------
-macid = "TODO"
+macid = "graydj1"
 
 -- Exercise A
 --------------------------------------------------------------------------------
@@ -40,7 +40,9 @@ macid = "TODO"
 -- NOTE zip short circuits on the shortest list
 --------------------------------------------------------------------------------
 zip :: [a] -> [b] -> [(a, b)]
-zip xs ys = error "TODO implement zip"
+zip [] _ = []
+zip _ [] = []
+zip (x:xs) (y:ys) = (x, y) : zip xs ys
 
 -- Exercise B
 --------------------------------------------------------------------------------
@@ -53,7 +55,7 @@ zip xs ys = error "TODO implement zip"
 -- NOTE zip [0..] xs   creates a list of (index,element) tuples
 --------------------------------------------------------------------------------
 mapWithIndex :: ((Int, a) -> b) -> [a] -> [b]
-mapWithIndex f xs = error "TODO implement mapWithIndex"
+mapWithIndex f xs = map f (zip [0..] xs)
 
 -- Exercise C
 --------------------------------------------------------------------------------
@@ -66,7 +68,9 @@ data List a = Cons a (List a)
   deriving (Show, Eq)
 
 mySum :: (Num a) => List a -> a
-mySum xs = error "TODO implement mySum"
+mySum xs = case xs of
+            Nil -> 0
+            Cons y ys -> y + mySum ys
 
 -- Exercise D
 --------------------------------------------------------------------------------
@@ -75,7 +79,9 @@ mySum xs = error "TODO implement mySum"
 -- custom List data type instead
 --------------------------------------------------------------------------------
 (+++) :: List a -> List a -> List a
-xs +++ ys = error "TODO implement +++"
+xs +++ ys = case xs of
+            Nil -> ys
+            Cons z zs -> Cons z (zs +++ ys)
 
 -- Exercise E
 --------------------------------------------------------------------------------
@@ -84,7 +90,9 @@ xs +++ ys = error "TODO implement +++"
 -- above custom List data type instead.
 --------------------------------------------------------------------------------
 myReverse :: List a -> List a
-myReverse xs  = error "TODO implement myReverse"
+myReverse xs  = case xs of
+                Nil -> Nil
+                Cons y ys -> myReverse ys +++ Cons y Nil
 
 -- Exercise F
 --------------------------------------------------------------------------------
@@ -97,7 +105,9 @@ data Tree a = Node a (Tree a) (Tree a)
   deriving (Show,Eq)
 
 treeSum :: Num a => Tree a -> a
-treeSum tree = error "TODO implement treeSum"
+treeSum tree =  case tree of
+            Empty -> 0
+            Node v l r -> v + treeSum l + treeSum r
 
 
 -- Exercise G
@@ -113,7 +123,9 @@ treeSum tree = error "TODO implement treeSum"
 -- NOTE the Empty Tree is of height 0
 --------------------------------------------------------------------------------
 treeHeight :: Tree a -> Int
-treeHeight tree = error "TODO implement treeHeight"
+treeHeight tree = case tree of
+            Empty -> 0
+            Node _ l r -> 1 + max (treeHeight l) (treeHeight r)
 
 -- Exercise H
 --------------------------------------------------------------------------------
@@ -121,10 +133,16 @@ treeHeight tree = error "TODO implement treeHeight"
 -- elements of a list
 --------------------------------------------------------------------------------
 take :: Int -> [a] -> [a]
-take n xs = error "TODO implement take"
+take n xs = case (n, xs) of
+            (0, _) -> []
+            (_, []) -> []
+            (m, (y:ys)) -> y : take (m-1) ys
 
 drop :: Int -> [a] -> [a]
-drop n xs = error "TODO implement drop"
+drop n xs = case (n, xs) of
+            (0, _) -> xs
+            (_, []) -> []
+            (m, (_:ys)) -> drop (m-1) ys
 
 -- Extra Challenge
 --------------------------------------------------------------------------------
