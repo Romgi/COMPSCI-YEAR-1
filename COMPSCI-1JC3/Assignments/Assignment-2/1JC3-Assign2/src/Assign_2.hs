@@ -29,8 +29,8 @@ module Assign_2 where
 --    THEN YOUR MACID IS "jim123"). FAILURE TO DO SO WILL RESULT IN A MARK OF 0!
 --------------------------------------------------------------------------------
 
--- Name: TODO add name
--- Date: TODO add date
+-- Name: Jonathan Graydon
+-- Date: October 23, 2025
 macid :: String
 macid = "graydj1"
 
