@@ -32,7 +32,7 @@ module Assign_2 where
 -- Name: TODO add name
 -- Date: TODO add date
 macid :: String
-macid = "TODO"
+macid = "graydj1"
 
 type GaussianRat = (Rational,Rational)
 
