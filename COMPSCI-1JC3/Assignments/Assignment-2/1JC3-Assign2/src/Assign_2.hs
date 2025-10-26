@@ -34,96 +34,273 @@ module Assign_2 where
 macid :: String
 macid = "graydj1"
 
+-- | A Gaussian rational a + bi is represented as a pair (a,b)
+--   where both a and b are of type 'Rational'.
+--   For example, (3, -2) represents 3 - 2i.
 type GaussianRat = (Rational,Rational)
 
 {- -----------------------------------------------------------------
  - gaussReal
  - -----------------------------------------------------------------
  - Description:
- -   TODO add comments
+ -   Extract the real part of a Gaussian rational.
+ -   Given x = (a,b) representing a + bi, return a.
  -}
 gaussReal :: GaussianRat -> Rational
-gaussReal x = error "TODO implement gaussReal"
+gaussReal (a,_) = a
 
 {- -----------------------------------------------------------------
  - gaussImag
  - -----------------------------------------------------------------
  - Description:
- -   TODO add comments
+ -   Extract the imaginary part of a Gaussian rational.
+ -   Given x = (a,b) representing a + bi, return b.
  -}
 gaussImag :: GaussianRat -> Rational
-gaussImag x = error "TODO implement gaussImag"
+gaussImag (_,b) = b
 
 {- -----------------------------------------------------------------
  - gaussConj
  - -----------------------------------------------------------------
  - Description:
- -   TODO add comments
+ -   Compute the complex conjugate.
+ -   For x = (a,b) representing a + bi, the conjugate is (a, -b)
+ -   representing a - bi.
  -}
 gaussConj :: GaussianRat -> GaussianRat
-gaussConj x = error "TODO implement gaussConj"
+gaussConj (a,b) = (a, negate b)
 
 {- -----------------------------------------------------------------
  - gaussAdd
  - -----------------------------------------------------------------
  - Description:
- -   TODO add comments
+ -   Add two Gaussian rationals componentwise.
+ -   (a0 + b0 i) + (a1 + b1 i) = (a0 + a1) + (b0 + b1) i.
  -}
 gaussAdd :: GaussianRat -> GaussianRat -> GaussianRat
-gaussAdd x y = error "TODO implement gaussAdd"
-
+gaussAdd (a0,b0) (a1,b1) = (a0 + a1, b0 + b1)
 
 {- -----------------------------------------------------------------
  - gaussMul
  - -----------------------------------------------------------------
  - Description:
- -   TODO add comments
+ -   Multiply two Gaussian rationals using the distributive law and i^2 = -1.
+ -   (a0 + b0 i) * (a1 + b1 i) = (a0*a1 - b0*b1) + (a0*b1 + b0*a1) i.
  -}
 gaussMul :: GaussianRat -> GaussianRat -> GaussianRat
-gaussMul x y = error "TODO implement gaussMul"
-
+gaussMul (a0,b0) (a1,b1) = (a0*a1 - b0*b1, a0*b1 + b0*a1)
 
 {- -----------------------------------------------------------------
  - gaussRecip
  - -----------------------------------------------------------------
  - Description:
- -   TODO add comments
+ -   Compute the multiplicative inverse (reciprocal), when it exists.
+ -   For x = a + b i with (a,b) \neq (0,0),
+ -      1/x = (a/(a^2 + b^2)) + (-b/(a^2 + b^2)) i.
+ -   If x = 0, raise an error (no multiplicative inverse).
  -}
 gaussRecip :: GaussianRat -> GaussianRat
-gaussRecip x = error "TODO implement gaussNorm"
+gaussRecip (a,b)
+  | a == 0 && b == 0 = error "gaussRecip: division by zero (0 has no reciprocal)"
+  | otherwise        = (a/den, negate b/den)
+  where
+    den = a*a + b*b
 
 {- -----------------------------------------------------------------
  - gaussNorm
  - -----------------------------------------------------------------
  - Description:
- -   TODO add comments
+ -   Compute the norm N(a + bi) = a^2 + b^2 (a nonnegative Rational).
  -}
 gaussNorm :: GaussianRat -> Rational
-gaussNorm x = error "TODO implement gaussNorm"
+gaussNorm (a,b) = a*a + b*b
 
 {- -----------------------------------------------------------------
  - gaussAddList
  - -----------------------------------------------------------------
  - Description:
- -   TODO add comments
+ -   Sum a list of Gaussian rationals using 'gaussAdd'.
+ -   By convention, the empty sum is 0, represented as (0,0).
  -}
 gaussAddList :: [GaussianRat] -> GaussianRat
-gaussAddList x = error "TODO implement gaussAddList"
+gaussAddList []       = (0,0)
+gaussAddList (x:rest) = gaussAdd x (gaussAddList rest)
 
 {- -----------------------------------------------------------------
  - gaussMulList
  - -----------------------------------------------------------------
  - Description:
- -   TODO add comments
+ -   Multiply a list of Gaussian rationals using 'gaussMul'.
+ -   By convention, the empty product is 1, represented as (1,0).
  -}
 gaussMulList :: [GaussianRat] -> GaussianRat
-gaussMulList x = error "TODO implement gaussMulList"
+gaussMulList []       = (1,0)
+gaussMulList (x:rest) = gaussMul x (gaussMulList rest)
 
 {- ------------------------------------------------------------------------
  - gaussCircle
  - ------------------------------------------------------------------------
  - Description:
- -   TODO add comments
+ -   Given a list xs of Gaussian rationals and a nonnegative radius r,
+ -   return the sublist of those x in xs whose norm is strictly less than r.
  -}
 gaussCircle :: [GaussianRat] -> Rational -> [GaussianRat]
-gaussCircle x y = error "TODO implement gaussCircle"
+gaussCircle [] _ = []
+gaussCircle (x:xs) r
+  | gaussNorm x < r = x : gaussCircle xs r
+  | otherwise       =     gaussCircle xs r
+
+
+{-
+================================================================================
+TEST PLAN
+================================================================================
+
+-------------------------------------------------------------------------------
+Function: gaussConj
+-------------------------------------------------------------------------------
+Test Case Number: 1
+Input:  (3,  4)
+Expected Output: (3, -4)
+Actual Output:   gaussConj (3,4)
+
+Test Case Number: 2
+Input:  (0, -5)
+Expected Output: (0,  5)
+Actual Output:   gaussConj (0,-5)
+
+Test Case Number: 3
+Input:  (-7/2, 9/2)
+Expected Output: (-7/2, -9/2)
+Actual Output:   gaussConj (-7/2, 9/2)
+
+-------------------------------------------------------------------------------
+Function: gaussAdd
+-------------------------------------------------------------------------------
+Test Case Number: 1
+Input:  (1,2) and (3,4)
+Expected Output: (4,6)
+Actual Output:   gaussAdd (1,2) (3,4)
+
+Test Case Number: 2
+Input:  (1/2, 3/2) and (1/3, -3/2)
+Expected Output: (1/2 + 1/3, 0)  -- i.e., (5/6, 0)
+Actual Output:   gaussAdd (1/2, 3/2) (1/3, -3/2)
+
+Test Case Number: 3
+Input:  (0,0) and (-5,7)
+Expected Output: (-5,7)
+Actual Output:   gaussAdd (0,0) (-5,7)
+
+-------------------------------------------------------------------------------
+Function: gaussMul
+-------------------------------------------------------------------------------
+Test Case Number: 1
+Input:  (1,2) and (3,4)
+Expected Output: (1*3 - 2*4, 1*4 + 2*3) = (-5, 10)
+Actual Output:   gaussMul (1,2) (3,4)
+
+Test Case Number: 2
+Input:  (0,1) and (0,1)        -- i * i = -1
+Expected Output: (-1,0)
+Actual Output:   gaussMul (0,1) (0,1)
+
+Test Case Number: 3
+Input:  (2, -3) and (1/2, 1/3)
+Expected Output: (2*(1/2) - (-3)*(1/3), 2*(1/3) + (-3)*(1/2))
+               = (1 + 1, 2/3 - 3/2) = (2, -5/6)
+Actual Output:   gaussMul (2,-3) (1/2, 1/3)
+
+-------------------------------------------------------------------------------
+Function: gaussRecip
+-------------------------------------------------------------------------------
+Test Case Number: 1
+Input:  (1,0)
+Expected Output: (1,0)
+Actual Output:   gaussRecip (1,0)
+
+Test Case Number: 2
+Input:  (0,1)                  -- 1/i = -i
+Expected Output: (0,-1)
+Actual Output:   gaussRecip (0,1)
+
+Test Case Number: 3
+Input:  (3,4)
+Expected Output: (3/25, -4/25)
+Actual Output:   gaussRecip (3,4)
+
+-- Edge case (should error): gaussRecip (0,0)
+
+-------------------------------------------------------------------------------
+Function: gaussNorm
+-------------------------------------------------------------------------------
+Test Case Number: 1
+Input:  (3,4)
+Expected Output: 25
+Actual Output:   gaussNorm (3,4)
+
+Test Case Number: 2
+Input:  (0,0)
+Expected Output: 0
+Actual Output:   gaussNorm (0,0)
+
+Test Case Number: 3
+Input:  (-5/2, 7/3)
+Expected Output: (25/4) + (49/9) = (225 + 196) / 36 = 421/36
+Actual Output:   gaussNorm (-5/2, 7/3)
+
+-------------------------------------------------------------------------------
+Function: gaussAddList
+-------------------------------------------------------------------------------
+Test Case Number: 1
+Input:  []
+Expected Output: (0,0)
+Actual Output:   gaussAddList []
+
+Test Case Number: 2
+Input:  [(1,2),(3,4),(-1,0)]
+Expected Output: (1+3-1, 2+4+0) = (3,6)
+Actual Output:   gaussAddList [(1,2),(3,4),(-1,0)]
+
+Test Case Number: 3
+Input:  [(1/2, 1/3), (1/2, -1/3)]
+Expected Output: (1,0)
+Actual Output:   gaussAddList [(1/2,1/3),(1/2,-1/3)]
+
+-------------------------------------------------------------------------------
+Function: gaussMulList
+-------------------------------------------------------------------------------
+Test Case Number: 1
+Input:  []
+Expected Output: (1,0)
+Actual Output:   gaussMulList []
+
+Test Case Number: 2
+Input:  [(1,1),(1,-1)]        -- (1+i)(1-i) = 2
+Expected Output: (2,0)
+Actual Output:   gaussMulList [(1,1),(1,-1)]
+
+Test Case Number: 3
+Input:  [(0,1),(0,1),(0,1),(0,1)]  -- i^4 = 1
+Expected Output: (1,0)
+Actual Output:   gaussMulList [(0,1),(0,1),(0,1),(0,1)]
+
+-------------------------------------------------------------------------------
+Function: gaussCircle
+-------------------------------------------------------------------------------
+Test Case Number: 1
+Input:  xs = [(1,0),(0,1),(3,4)], r = 2
+Expected Output: [(1,0),(0,1)]   -- norms 1 and 1 < 2; 25 not < 2
+Actual Output:   gaussCircle [(1,0),(0,1),(3,4)] 2
+
+Test Case Number: 2
+Input:  xs = [], r = 5
+Expected Output: []
+Actual Output:   gaussCircle [] 5
+
+Test Case Number: 3
+Input:  xs = [(1/2,1/2),(1,1)], r = 1
+Expected Output: []               -- norms are 1/2 and 2; neither < 1
+Actual Output:   gaussCircle [(1/2,1/2),(1,1)] 1
+
+-}
