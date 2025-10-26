@@ -162,17 +162,17 @@ Function: gaussConj
 Test Case Number: 1
 Input:  (3,  4)
 Expected Output: (3, -4)
-Actual Output:   gaussConj (3,4)
+Actual Output:   (3 % 1,(-4) % 1) ✓
 
 Test Case Number: 2
 Input:  (0, -5)
 Expected Output: (0,  5)
-Actual Output:   gaussConj (0,-5)
+Actual Output:   (0 % 1,5 % 1) ✓
 
 Test Case Number: 3
 Input:  (-7/2, 9/2)
 Expected Output: (-7/2, -9/2)
-Actual Output:   gaussConj (-7/2, 9/2)
+Actual Output:   ((-7) % 2,(-9) % 2) ✓
 
 -------------------------------------------------------------------------------
 Function: gaussAdd
@@ -180,17 +180,17 @@ Function: gaussAdd
 Test Case Number: 1
 Input:  (1,2) and (3,4)
 Expected Output: (4,6)
-Actual Output:   gaussAdd (1,2) (3,4)
+Actual Output:   (4 % 1,6 % 1) ✓
 
 Test Case Number: 2
 Input:  (1/2, 3/2) and (1/3, -3/2)
-Expected Output: (1/2 + 1/3, 0)  -- i.e., (5/6, 0)
-Actual Output:   gaussAdd (1/2, 3/2) (1/3, -3/2)
+Expected Output: (1/2 + 1/3, 0)
+Actual Output:   (5 % 6,0 % 1) ✓
 
 Test Case Number: 3
 Input:  (0,0) and (-5,7)
 Expected Output: (-5,7)
-Actual Output:   gaussAdd (0,0) (-5,7)
+Actual Output:   ((-5) % 1,7 % 1) ✓
 
 -------------------------------------------------------------------------------
 Function: gaussMul
@@ -198,18 +198,18 @@ Function: gaussMul
 Test Case Number: 1
 Input:  (1,2) and (3,4)
 Expected Output: (1*3 - 2*4, 1*4 + 2*3) = (-5, 10)
-Actual Output:   gaussMul (1,2) (3,4)
+Actual Output:   ((-5) % 1,10 % 1) ✓
 
 Test Case Number: 2
-Input:  (0,1) and (0,1)        -- i * i = -1
+Input:  (0,1) and (0,1)
 Expected Output: (-1,0)
-Actual Output:   gaussMul (0,1) (0,1)
+Actual Output:   ((-1) % 1,0 % 1) ✓
 
 Test Case Number: 3
 Input:  (2, -3) and (1/2, 1/3)
 Expected Output: (2*(1/2) - (-3)*(1/3), 2*(1/3) + (-3)*(1/2))
                = (1 + 1, 2/3 - 3/2) = (2, -5/6)
-Actual Output:   gaussMul (2,-3) (1/2, 1/3)
+Actual Output:   (2 % 1,(-5) % 6) ✓
 
 -------------------------------------------------------------------------------
 Function: gaussRecip
@@ -217,17 +217,17 @@ Function: gaussRecip
 Test Case Number: 1
 Input:  (1,0)
 Expected Output: (1,0)
-Actual Output:   gaussRecip (1,0)
+Actual Output:   (1 % 1,0 % 1) ✓
 
 Test Case Number: 2
-Input:  (0,1)                  -- 1/i = -i
+Input:  (0,1)
 Expected Output: (0,-1)
-Actual Output:   gaussRecip (0,1)
+Actual Output:   (0 % 1,(-1) % 1) ✓
 
 Test Case Number: 3
 Input:  (3,4)
 Expected Output: (3/25, -4/25)
-Actual Output:   gaussRecip (3,4)
+Actual Output:   (3 % 25,(-4) % 25) ✓
 
 -- Edge case (should error): gaussRecip (0,0)
 
@@ -237,17 +237,17 @@ Function: gaussNorm
 Test Case Number: 1
 Input:  (3,4)
 Expected Output: 25
-Actual Output:   gaussNorm (3,4)
+Actual Output:   25 % 1 ✓
 
 Test Case Number: 2
 Input:  (0,0)
 Expected Output: 0
-Actual Output:   gaussNorm (0,0)
+Actual Output:   0 % 1 ✓
 
 Test Case Number: 3
 Input:  (-5/2, 7/3)
 Expected Output: (25/4) + (49/9) = (225 + 196) / 36 = 421/36
-Actual Output:   gaussNorm (-5/2, 7/3)
+Actual Output:   421 % 36 ✓
 
 -------------------------------------------------------------------------------
 Function: gaussAddList
@@ -255,17 +255,17 @@ Function: gaussAddList
 Test Case Number: 1
 Input:  []
 Expected Output: (0,0)
-Actual Output:   gaussAddList []
+Actual Output:   (0 % 1,0 % 1) ✓
 
 Test Case Number: 2
 Input:  [(1,2),(3,4),(-1,0)]
 Expected Output: (1+3-1, 2+4+0) = (3,6)
-Actual Output:   gaussAddList [(1,2),(3,4),(-1,0)]
+Actual Output:   (3 % 1,6 % 1) ✓
 
 Test Case Number: 3
 Input:  [(1/2, 1/3), (1/2, -1/3)]
 Expected Output: (1,0)
-Actual Output:   gaussAddList [(1/2,1/3),(1/2,-1/3)]
+Actual Output:   (1 % 1,0 % 1) ✓
 
 -------------------------------------------------------------------------------
 Function: gaussMulList
@@ -273,34 +273,34 @@ Function: gaussMulList
 Test Case Number: 1
 Input:  []
 Expected Output: (1,0)
-Actual Output:   gaussMulList []
+Actual Output:   (1 % 1,0 % 1) ✓
 
 Test Case Number: 2
-Input:  [(1,1),(1,-1)]        -- (1+i)(1-i) = 2
+Input:  [(1,1),(1,-1)]
 Expected Output: (2,0)
-Actual Output:   gaussMulList [(1,1),(1,-1)]
+Actual Output:   (2 % 1,0 % 1) ✓
 
 Test Case Number: 3
-Input:  [(0,1),(0,1),(0,1),(0,1)]  -- i^4 = 1
+Input:  [(0,1),(0,1),(0,1),(0,1)]
 Expected Output: (1,0)
-Actual Output:   gaussMulList [(0,1),(0,1),(0,1),(0,1)]
+Actual Output:   (1 % 1,0 % 1) ✓
 
 -------------------------------------------------------------------------------
 Function: gaussCircle
 -------------------------------------------------------------------------------
 Test Case Number: 1
 Input:  xs = [(1,0),(0,1),(3,4)], r = 2
-Expected Output: [(1,0),(0,1)]   -- norms 1 and 1 < 2; 25 not < 2
-Actual Output:   gaussCircle [(1,0),(0,1),(3,4)] 2
+Expected Output: [(1,0),(0,1)]
+Actual Output:   [(1 % 1,0 % 1),(0 % 1,1 % 1)] ✓
 
 Test Case Number: 2
 Input:  xs = [], r = 5
 Expected Output: []
-Actual Output:   gaussCircle [] 5
+Actual Output:   [] ✓
 
 Test Case Number: 3
 Input:  xs = [(1/2,1/2),(1,1)], r = 1
-Expected Output: []               -- norms are 1/2 and 2; neither < 1
-Actual Output:   gaussCircle [(1/2,1/2),(1,1)] 1
+Expected Output: [(1/2,1/2)]
+Actual Output:   [(1 % 2,1 % 2)] ✓
 
 -}
