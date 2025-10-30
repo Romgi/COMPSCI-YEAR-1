@@ -45,9 +45,11 @@ split :: [a] -> ([a],[a])
 split xs =
   let
     half = length xs `div` 2
-    split' xs (y:ys) n = error "TODO implement split'"
-    split' xs [] n = (xs,[])
-   in split' [] xs half
+    split' xs (y:ys) n
+      | n > 0 = split' (xs ++ [y]) ys (n - 1)
+      | otherwise = (xs, y:ys)
+    split' xs [] n = (xs, [])
+  in split' [] xs half
 
 
 -- Exercise B
@@ -56,7 +58,11 @@ split xs =
 -- are already sorted) merges them together in to a sorted list
 --------------------------------------------------------------------------------
 merge :: (Ord a) => [a] -> [a] -> [a]
-merge xs ys = error "TODO implement merge"
+merge xs [] = xs
+merge [] ys = ys
+merge (x:xs) (y:ys)
+  | x <= y    = x : merge xs (y:ys)
+  | otherwise = y : merge (x:xs) ys
 
 -- Exercise C
 --------------------------------------------------------------------------------
@@ -66,7 +72,10 @@ merge xs ys = error "TODO implement merge"
 -- NOTE singleton and empty lists are already sorted
 --------------------------------------------------------------------------------
 mergeSort :: (Ord a) => [a] -> [a]
-mergeSort xs = error "TODO implement mergeSort"
+mergeSort [] = []
+mergeSort [x] = [x]
+mergeSort xs = let (left, right) = split xs
+               in merge (mergeSort left) (mergeSort right)
 
 -- Exercise D
 --------------------------------------------------------------------------------
