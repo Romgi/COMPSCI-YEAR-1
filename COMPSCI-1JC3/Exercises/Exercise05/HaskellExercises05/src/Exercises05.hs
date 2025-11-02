@@ -85,15 +85,17 @@ mergeSort xs = let (left, right) = split xs
 --      calling: quickCheck (sortProp . mergeSort)
 --------------------------------------------------------------------------------
 sortProp :: (Ord a) => [a] -> Bool
-sortProp xs = error "TODO implement sortProp"
-
+sortProp []           = True
+sortProp [_]          = True
+sortProp (x:y:xs)     = x <= y && sortProp (y:xs)
 -- Exercise E
 --------------------------------------------------------------------------------
 -- Implement the Prelude function replicate that takes an Int n and a element
 -- and returns a list that replicates that element n times
 --------------------------------------------------------------------------------
 replicate :: Int -> a -> [a]
-replicate n x = error "TODO implement replicate"
+replicate n _ | n <= 0  = []
+replicate n x           = x : replicate (n - 1) x
 
 -- Exercise F
 --------------------------------------------------------------------------------
@@ -101,7 +103,11 @@ replicate n x = error "TODO implement replicate"
 -- using recursion NOTE throw an error when indexing out of bounds
 --------------------------------------------------------------------------------
 (!!) :: [a] -> Int -> a
-(!!) xs n = error "TODO implement !!"
+[]      !! _           = error "index out of bounds"
+(x:_)   !! 0           = x
+(_:xs)  !! n
+  | n < 0              = error "negative index"
+  | otherwise          = xs !! (n - 1)
 
 -- Exercise G
 --------------------------------------------------------------------------------
@@ -109,4 +115,5 @@ replicate n x = error "TODO implement replicate"
 -- True if the value is an element of the list
 --------------------------------------------------------------------------------
 elem :: (Eq a) => a -> [a] -> Bool
-elem e xs = error "TODO implement elem"
+elem _ []              = False
+elem e (x:xs)          = (e == x) || elem e xs
