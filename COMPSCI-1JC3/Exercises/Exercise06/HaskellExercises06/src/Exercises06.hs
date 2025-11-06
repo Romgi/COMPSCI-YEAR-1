@@ -28,7 +28,7 @@ import Prelude hiding (zipWith,foldr,foldl,concat,concatMap,lookup)
 --    PART OF YOUR SCHOOL EMAIL (I.E. IF YOUR EMAIL IS "jim123@mcmaster.ca",
 --    THEN YOUR MACID IS "jim123"). FAILURE TO DO SO WILL RESULT IN A MARK OF 0!
 --------------------------------------------------------------------------------
-macid = "TODO"
+macid = "graydj1"
 
 -- Exercise A
 --------------------------------------------------------------------------------
