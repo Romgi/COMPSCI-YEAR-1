@@ -40,7 +40,9 @@ macid = "graydj1"
 -- NOTE QuickCheck test uses (+) as the function parameter
 --------------------------------------------------------------------------------
 zipWith :: (a -> b -> c) -> [a] -> [b] -> [c]
-zipWith op xs ys = error "TODO implement zipWith"
+zipWith _ [] _ = []
+zipWith _ _ [] = []
+zipWith f (x:xs) (y:ys) = f x y : zipWith f xs ys
 
 -- Exercise B
 --------------------------------------------------------------------------------
@@ -52,7 +54,8 @@ zipWith op xs ys = error "TODO implement zipWith"
 -- NOTE QuickCheck test uses (-) as the function parameter
 --------------------------------------------------------------------------------
 foldr :: (a -> b -> b) -> b -> [a] -> b
-foldr op v xs = error "TODO implement foldr"
+foldr _ v [] = v
+foldr op v (x:xs) = op x (foldr op v xs)
 
 -- Exercise C
 --------------------------------------------------------------------------------
@@ -64,7 +67,8 @@ foldr op v xs = error "TODO implement foldr"
 -- NOTE QuickCheck test uses (-) as the function parameter
 --------------------------------------------------------------------------------
 foldl :: (b -> a -> b) -> b -> [a] -> b
-foldl op v xs = error "TODO implement foldr"
+foldl _ v [] = v
+foldl op v (x:xs) = foldl op (op v x) xs
 
 -- Exercise D
 --------------------------------------------------------------------------------
@@ -72,7 +76,7 @@ foldl op v xs = error "TODO implement foldr"
 -- combines them into just a list) using foldl
 --------------------------------------------------------------------------------
 concat :: [[a]] -> [a]
-concat xss = error "TODO implement concat"
+concat xss = foldl (++) [] xss
 
 -- Exercise E
 --------------------------------------------------------------------------------
@@ -85,7 +89,7 @@ concat xss = error "TODO implement concat"
 -- NOTE QuickCheck test uses (replicate 2) as the function parameter
 --------------------------------------------------------------------------------
 concatMap :: (a -> [b]) -> [a] -> [b]
-concatMap f xs  = error "TODO implement concatMap"
+concatMap f xs = foldr (\x acc -> f x ++ acc) [] xs
 
 -- Exercise F
 --------------------------------------------------------------------------------
@@ -100,4 +104,7 @@ concatMap f xs  = error "TODO implement concatMap"
 --       [(0,'a'),(2,'b'),(2,'c')] == Just 'b'
 --------------------------------------------------------------------------------
 lookup :: Eq k => k -> [(k,v)] -> Maybe v
-lookup k0 ds = error "TODO implement lookup"
+lookup _ [] = Nothing
+lookup key ((k,v):kvs)
+  | key == k  = Just v
+  | otherwise = lookup key kvs
