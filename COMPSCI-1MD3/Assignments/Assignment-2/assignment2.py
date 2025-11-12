@@ -1,3 +1,4 @@
+
 from PIL import Image
 from typing import List
 
@@ -14,7 +15,9 @@ def mirror(raw: List[List[List[int]]])-> None:
     [[[255, 255, 255], [0, 0, 0], [233, 100, 115]],
      [[255, 255, 255], [1, 9, 0], [199, 201, 116]]]
     """
-    #TODO
+    # Reverse each row in-place
+    for row in raw:
+        row.reverse()
     return
 
 
@@ -32,7 +35,12 @@ def grey(raw: List[List[List[int]]])-> None:
     [[[149, 149, 149], [0, 0, 0], [255, 255, 255]],
      [[172, 172, 172], [3, 3, 3], [255, 255, 255]]]
     """
-    #TODO
+    # For each pixel, set all channels to the integer average
+    for i in range(len(raw)):
+        for j in range(len(raw[i])):
+            r, g, b = raw[i][j]
+            avg = (r + g + b) // 3
+            raw[i][j] = [avg, avg, avg]
     return
 
 
@@ -49,7 +57,21 @@ def invert(raw: List[List[List[int]]])->None:
     [[[100, 233, 115], [0, 0, 0], [0, 0, 255]],
      [[199, 116, 201], [1, 0, 9], [100, 255, 255]]]
     """
-    #TODO
+    # For each pixel, swap occurrences of min and max channel values
+    for i in range(len(raw)):
+        for j in range(len(raw[i])):
+            r, g, b = raw[i][j]
+            mn = min(r, g, b)
+            mx = max(r, g, b)
+            new_pixel = []
+            for v in (r, g, b):
+                if v == mn:
+                    new_pixel.append(mx)
+                elif v == mx:
+                    new_pixel.append(mn)
+                else:
+                    new_pixel.append(v)
+            raw[i][j] = new_pixel
     return
 
 
@@ -67,8 +89,30 @@ def merge(raw1: List[List[List[int]]], raw2: List[List[List[int]]])-> List[List[
        3.4) raw1[i][j] if i is even
        3.5) raw2[i][j] if i is odd
     """
-    #TODO
-    return
+    h1 = len(raw1)
+    h2 = len(raw2)
+    w1 = len(raw1[0]) if h1 > 0 else 0
+    w2 = len(raw2[0]) if h2 > 0 else 0
+
+    H = max(h1, h2)
+    W = max(w1, w2)
+
+    result: List[List[List[int]]] = []
+    for i in range(H):
+        row: List[List[int]] = []
+        for j in range(W):
+            has1 = (i < h1) and (j < (len(raw1[i]) if i < h1 else 0))
+            has2 = (i < h2) and (j < (len(raw2[i]) if i < h2 else 0))
+            if not has1 and not has2:
+                row.append([0, 0, 0])
+            elif has1 and not has2:
+                row.append(raw1[i][j])
+            elif has2 and not has1:
+                row.append(raw2[i][j])
+            else:
+                row.append(raw1[i][j] if i % 2 == 0 else raw2[i][j])
+        result.append(row)
+    return result
 
 
 def compress(raw: List[List[List[int]]])-> List[List[List[int]]]:
@@ -97,8 +141,35 @@ def compress(raw: List[List[List[int]]])-> List[List[List[int]]]:
     [[[108, 77, 57], [255, 177, 50]],
      [[117, 166, 80], [0, 1, 1]]]
     """
-    #TODO
-    return
+    h = len(raw)
+    w = len(raw[0]) if h > 0 else 0
+
+    # New dimensions are ceil(h/2) x ceil(w/2)
+    new_h = (h + 1) // 2
+    new_w = (w + 1) // 2
+
+    result: List[List[List[int]]] = []
+    for i in range(new_h):
+        row: List[List[int]] = []
+        r0 = 2 * i
+        for j in range(new_w):
+            c0 = 2 * j
+            # Collect up to four pixels: (r0,c0), (r0,c0+1), (r0+1,c0), (r0+1,c0+1)
+            pixels = []
+            for dr in (0, 1):
+                for dc in (0, 1):
+                    rr = r0 + dr
+                    cc = c0 + dc
+                    if rr < h and cc < len(raw[rr]):
+                        pixels.append(raw[rr][cc])
+            # Average each channel across the collected pixels
+            r_sum = sum(p[0] for p in pixels)
+            g_sum = sum(p[1] for p in pixels)
+            b_sum = sum(p[2] for p in pixels)
+            count = len(pixels)
+            row.append([r_sum // count, g_sum // count, b_sum // count])
+        result.append(row)
+    return result
 
 
 """
@@ -138,10 +209,3 @@ def image_from_raw(raw: List[List[List[int]]], name: str)->None:
             pixels.append(tuple(pixel))
     image.putdata(pixels)
     image.save(name)
-                      
-                      
-
-
-
-
-    
