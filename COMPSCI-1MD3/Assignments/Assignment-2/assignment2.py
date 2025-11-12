@@ -4,8 +4,7 @@ from typing import List
 
 def mirror(raw: List[List[List[int]]]) -> None:
     """
-    Assume raw is image data. Modifies raw by reversing all the rows
-    of the data.
+    Modifies image data by reversing every row in-place.
 
     >>> raw = [[[233, 100, 115], [0, 0, 0], [255, 255, 255]],
     ...        [[199, 201, 116], [1, 9, 0], [255, 255, 255]]]
@@ -21,9 +20,8 @@ def mirror(raw: List[List[List[int]]]) -> None:
 
 def grey(raw: List[List[List[int]]]) -> None:
     """
-    Assume raw is image data. Modifies raw "averaging out" each pixel.
-    For each pixel, total the RGB values, integer divide by three, and
-    set all RGB values equal to this new value.
+    Converts image data to greyscale in-place by replacing each pixel’s
+    channels with their integer average.
 
     >>> raw = [[[233, 100, 115], [0, 0, 0], [255, 255, 255]],
     ...        [[199, 201, 116], [1, 9, 0], [255, 255, 255]]]
@@ -42,8 +40,7 @@ def grey(raw: List[List[List[int]]]) -> None:
 
 def invert(raw: List[List[List[int]]]) -> None:
     """
-    Assume raw is image data. Modifies raw by inverting each pixel:
-    swap the min and max channel values within each pixel.
+    Inverts each pixel in-place by swapping its min and max channel values.
 
     >>> raw = [[[233, 100, 115], [0, 0, 0], [255, 255, 0]],
     ...        [[199, 201, 116], [1, 9, 0], [255, 100, 100]]]
@@ -71,21 +68,18 @@ def invert(raw: List[List[List[int]]]) -> None:
 
 def merge(raw1: List[List[List[int]]], raw2: List[List[List[int]]]) -> List[List[List[int]]]:
     """
-    Merges raw1 and raw2 into new raw image data and returns it.
-    The pixel data rule:
-      - [0,0,0] if neither image has data
-      - raw1 if only raw1 has data
-      - raw2 if only raw2 has data
-      - alternate by row: raw1 on even rows, raw2 on odd
+    Returns a new image by combining two images using the following rule:
+      - [0, 0, 0] if neither image has a pixel at (i, j)
+      - raw1[i][j] if only raw1 has a pixel at (i, j)
+      - raw2[i][j] if only raw2 has a pixel at (i, j)
+      - alternate by row when both exist: raw1 for even i, raw2 for odd i
     """
-    h1 = len(raw1)
-    h2 = len(raw2)
+    h1, h2 = len(raw1), len(raw2)
     w1 = len(raw1[0]) if h1 > 0 else 0
     w2 = len(raw2[0]) if h2 > 0 else 0
-    H = max(h1, h2)
-    W = max(w1, w2)
-    result: List[List[List[int]]] = []
+    H, W = max(h1, h2), max(w1, w2)
 
+    out: List[List[List[int]]] = []
     for i in range(H):
         row: List[List[int]] = []
         for j in range(W):
@@ -99,15 +93,14 @@ def merge(raw1: List[List[List[int]]], raw2: List[List[List[int]]]) -> List[List
                 row.append(raw2[i][j])
             else:
                 row.append(raw1[i][j] if i % 2 == 0 else raw2[i][j])
-        result.append(row)
-    return result
+        out.append(row)
+    return out
 
 
 def compress(raw: List[List[List[int]]]) -> List[List[List[int]]]:
     """
-    Compresses raw by averaging 2x2 blocks (top-left, top-right,
-    bottom-left, bottom-right) with integer division; edges average
-    fewer pixels.
+    Downsamples by averaging up to four pixels per 2×2 block (top-left,
+    top-right, bottom-left, bottom-right). Edges average fewer pixels.
 
     >>> raw = [[[233, 100, 115], [0, 0, 0], [255, 255, 0], [3, 6, 7]],
     ...        [[199, 201, 116], [1, 9, 0], [255, 100, 100], [99, 99, 0]],
@@ -131,54 +124,56 @@ def compress(raw: List[List[List[int]]]) -> List[List[List[int]]]:
     new_h = (h + 1) // 2
     new_w = (w + 1) // 2
 
-    result: List[List[List[int]]] = []
+    out: List[List[List[int]]] = []
     for i in range(new_h):
-        row: List[List[int]] = []
         r0 = 2 * i
+        row: List[List[int]] = []
         for j in range(new_w):
             c0 = 2 * j
             pixels = []
             for dr in (0, 1):
                 for dc in (0, 1):
-                    rr = r0 + dr
-                    cc = c0 + dc
+                    rr, cc = r0 + dr, c0 + dc
                     if rr < h and cc < len(raw[rr]):
                         pixels.append(raw[rr][cc])
             r_sum = sum(p[0] for p in pixels)
             g_sum = sum(p[1] for p in pixels)
             b_sum = sum(p[2] for p in pixels)
-            count = len(pixels)
-            row.append([r_sum // count, g_sum // count, b_sum // count])
-        result.append(row)
-    return result
+            n = len(pixels)
+            row.append([r_sum // n, g_sum // n, b_sum // n])
+        out.append(row)
+    return out
 
 
 def get_raw_image(name: str) -> List[List[List[int]]]:
+    """
+    Reads an image file and returns pixel data as a nested list of [R,G,B].
+    """
     image = Image.open(name).convert("RGB")
-    num_rows = image.height
-    num_columns = image.width
+    h, w = image.height, image.width
     pixels = image.getdata()
-    new_data = []
-    for i in range(num_rows):
-        new_row = []
-        for j in range(num_columns):
-            new_pixel = list(pixels[i * num_columns + j])
-            new_row.append(new_pixel)
-        new_data.append(new_row)
+    data: List[List[List[int]]] = []
+    for i in range(h):
+        row: List[List[int]] = []
+        for j in range(w):
+            row.append(list(pixels[i * w + j]))
+        data.append(row)
     image.close()
-    return new_data
+    return data
 
 
 def image_from_raw(raw: List[List[List[int]]], name: str) -> None:
+    """
+    Writes nested-list RGB pixel data to an image file.
+    """
     image = Image.new("RGB", (len(raw[0]), len(raw)))
-    pixels = []
-    for row in raw:
-        for pixel in row:
-            pixels.append(tuple(pixel))
-    image.putdata(pixels)
+    flat = [tuple(px) for row in raw for px in row]
+    image.putdata(flat)
     image.save(name)
 
 
 if __name__ == "__main__":
+    # Enable doctest and relax whitespace sensitivity for stable verification.
     import doctest
-    doctest.testmod(verbose=True)
+    doctest.testmod(verbose=True,
+                    optionflags=doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS)
