@@ -209,3 +209,8 @@ def image_from_raw(raw: List[List[List[int]]], name: str)->None:
             pixels.append(tuple(pixel))
     image.putdata(pixels)
     image.save(name)
+
+#Use for doctest
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod(verbose=True)
