@@ -184,114 +184,114 @@ prettyTerm (FunAbs i m) = "(lambda x" ++ show i ++ " . " ++ prettyTerm m ++ ")"
  - Test Plan
  - -----------------------------------------------------------------
 
-Function: isFreeIn
-Test Case Number: 1
+Function: isFreeIn 
+Test Case Number: 1 ✅
 Input: isFreeIn (Var 1) (Var 1)
 Expected Output: True
 Actual Output: True
 
-Test Case Number: 2
+Test Case Number: 2 ✅
 Input: isFreeIn (Var 1) (FunAbs 1 (Var 1))
 Expected Output: False
 Actual Output: False
 
-Test Case Number: 3
+Test Case Number: 3 ✅
 Input: isFreeIn (Var 2) (FunApp (FunAbs 1 (Var 1)) (Var 2))
 Expected Output: True
 Actual Output: True
 
-Function: freshVarList
-Test Case Number: 1
+Function: freshVarList 
+Test Case Number: 1 ✅
 Input: freshVarList [Var 1, Var 2, Var 3]
 Expected Output: 4
 Actual Output: 4
 
-Test Case Number: 2
+Test Case Number: 2 ✅
 Input: freshVarList [FunAbs 1 (Var 1), FunApp (Var 2) (Var 3)]
 Expected Output: 4
 Actual Output: 4
 
-Test Case Number: 3
+Test Case Number: 3 ✅
 Input: freshVarList []
 Expected Output: 0
 Actual Output: 0
 
 Function: sub
-Test Case Number: 1
+Test Case Number: 1 ✅
 Input: sub (Var 2) (Var 1) (Var 1)
 Expected Output: Var 2
 Actual Output: Var 2
 
-Test Case Number: 2
+Test Case Number: 2 ✅
 Input: sub (Var 2) (Var 1) (FunApp (Var 1) (Var 3))
 Expected Output: FunApp (Var 2) (Var 3)
 Actual Output: FunApp (Var 2) (Var 3)
 
-Test Case Number: 3
+Test Case Number: 3 ✅
 Input: sub (Var 2) (Var 1) (FunAbs 1 (FunApp (Var 1) (Var 2)))
 Expected Output: FunAbs 1 (FunApp (Var 1) (Var 2))
 Actual Output: FunAbs 1 (FunApp (Var 1) (Var 2))
 
 Function: isRedex
-Test Case Number: 1
+Test Case Number: 1 ✅
 Input: isRedex (FunApp (FunAbs 1 (Var 1)) (Var 2))
 Expected Output: True
 Actual Output: True
 
-Test Case Number: 2
+Test Case Number: 2 ✅
 Input: isRedex (Var 1)
 Expected Output: False
 Actual Output: False
 
-Test Case Number: 3
+Test Case Number: 3 ✅
 Input: isRedex (FunAbs 1 (Var 1))
 Expected Output: False
 Actual Output: False
 
 Function: betaRed
-Test Case Number: 1
+Test Case Number: 1 ✅
 Input: betaRed (FunApp (FunAbs 1 (Var 1)) (Var 2))
 Expected Output: Var 2
 Actual Output: Var 2
 
-Test Case Number: 2
+Test Case Number: 2 ✅
 Input: betaRed (FunApp (FunAbs 1 (FunApp (Var 1) (Var 1))) (Var 2))
 Expected Output: FunApp (Var 2) (Var 2)
 Actual Output: FunApp (Var 2) (Var 2)
 
-Test Case Number: 3
+Test Case Number: 3 ✅
 Input: betaRed (Var 1)
 Expected Output: Var 1
 Actual Output: Var 1
 
 Function: normOrdRed
-Test Case Number: 1
+Test Case Number: 1 ✅
 Input: normOrdRed (Var 1)
 Expected Output: Var 1
 Actual Output: Var 1
 
-Test Case Number: 2
+Test Case Number: 2 ✅
 Input: normOrdRed (FunApp (FunAbs 1 (Var 1)) (Var 2))
 Expected Output: Var 2
 Actual Output: Var 2
 
-Test Case Number: 3
+Test Case Number: 3 ✅
 Input: normOrdRed (FunApp (FunAbs 1 (FunApp (Var 1) (Var 1))) (Var 2))
 Expected Output: FunApp (Var 2) (Var 2)
 Actual Output: FunApp (Var 2) (Var 2)
 
 Function: prettyPrint
-Test Case Number: 1
+Test Case Number: 1 ✅
 Input: prettyPrint (Var 1)
 Expected Output: "x1."
 Actual Output: "x1."
 
-Test Case Number: 2
+Test Case Number: 2 ✅
 Input: prettyPrint (FunAbs 1 (Var 1))
 Expected Output: "(lambda x1 . x1)."
 Actual Output: "(lambda x1 . x1)."
 
-Test Case Number: 3
+Test Case Number: 3 ✅
 Input: prettyPrint (FunApp (FunAbs 1 (Var 1)) (Var 2))
 Expected Output: "((lambda x1 . x1) x2)."
 Actual Output: "((lambda x1 . x1) x2)."
