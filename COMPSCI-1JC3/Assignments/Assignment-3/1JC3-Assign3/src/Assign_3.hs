@@ -97,18 +97,18 @@ freeIn x (FunAbs y m)
   | x == y    = False
   | otherwise = freeIn x m
 
--- Helper function: capture-avoiding substitution [x ↦ m] on a lambda term
+-- Helper function: capture-avoiding substitution [x -> m] on a lambda term
 sub' :: Integer -> LambdaTerm -> LambdaTerm -> LambdaTerm
 sub' x m (Var y)
   | x == y    = m
   | otherwise = Var y
 sub' x m (FunApp a b) = FunApp (sub' x m a) (sub' x m b)
 sub' x m (FunAbs y n)
-  | x == y = FunAbs y n                          -- S4
-  | not (freeIn y m) = FunAbs y (sub' x m n)     -- S5
-  | otherwise =                                   -- S6: alpha-rename to avoid capture
+  | x == y = FunAbs y n                         
+  | not (freeIn y m) = FunAbs y (sub' x m n)
+  | otherwise =                                   
       let y' = freshVarList [m, FunAbs y n]
-          n' = sub' y (Var y') n                 -- rename bound occurrences of y to y'
+          n' = sub' y (Var y') n
       in FunAbs y' (sub' x m n')
 
 {- -----------------------------------------------------------------
