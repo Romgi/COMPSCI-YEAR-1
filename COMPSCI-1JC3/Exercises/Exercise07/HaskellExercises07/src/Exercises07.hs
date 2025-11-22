@@ -28,7 +28,7 @@ import Prelude hiding (curry,fmap)
 --    PART OF YOUR SCHOOL EMAIL (I.E. IF YOUR EMAIL IS "jim123@mcmaster.ca",
 --    THEN YOUR MACID IS "jim123"). FAILURE TO DO SO WILL RESULT IN A MARK OF 0!
 --------------------------------------------------------------------------------
-macid = "TODO"
+macid = "graydj1"
 
 -- Exercise A
 --------------------------------------------------------------------------------
@@ -38,7 +38,8 @@ macid = "TODO"
 -- E.x. iter 3 f == f . f . f
 --------------------------------------------------------------------------------
 iter :: Int -> (a -> a) -> (a -> a)
-iter n f = error "TODO implement iter"
+iter 0 f = id
+iter n f = f . iter (n-1) f
 
 -- Exercise B
 --------------------------------------------------------------------------------
@@ -46,7 +47,8 @@ iter n f = error "TODO implement iter"
 -- instead of [a].
 --------------------------------------------------------------------------------
 mapMaybe :: (a -> b) -> Maybe a -> Maybe b
-mapMaybe f m = error "TODO implement mapMaybe"
+mapMaybe f (Just x) = Just (f x)
+mapMaybe f Nothing  = Nothing
 
 -- Exercise C
 --------------------------------------------------------------------------------
@@ -58,7 +60,7 @@ mapMaybe f m = error "TODO implement mapMaybe"
 --    == [0,2]
 --------------------------------------------------------------------------------
 concatMapMaybe :: (a -> Maybe a) -> [a] -> [a]
-concatMapMaybe f xs = error "TODO: implement concatMapMaybe"
+concatMapMaybe f xs = concatMap (maybeToList . f) xs
 
 maybeToList :: Maybe a -> [a]
 maybeToList (Just x) = [x]
@@ -74,7 +76,7 @@ maybeToList (Nothing)  = []
 -- NOTE use a lambda expression, and the implementation is VERY straight forward
 --------------------------------------------------------------------------------
 curry :: ((a,b) -> c) -> a -> b -> c
-curry f = error "TODO: implement curry"
+curry f = \a b -> f (a,b)
 
 -- Exercise E
 --------------------------------------------------------------------------------
@@ -88,9 +90,7 @@ foldt :: (b -> a -> b) -> b -> Tree a -> b
 foldt op v (TNode x ts) =
   let
     v' = foldl (foldt op) v ts
-  in error "TODO: implement foldt"
-     -- NOTE if you wrap your head around whats going on here, the sol'n is
-     -- super simple
+  in op v' x
 
 -- Exercise F
 --------------------------------------------------------------------------------
@@ -106,13 +106,11 @@ data FamilyTree = Person { name   :: String
   deriving (Show,Eq)
 
 familyTree2Tree :: FamilyTree -> Tree String
-familyTree2Tree familyTree =
+familyTree2Tree ft =
   let
-    maybeMother = mother familyTree
-    maybeFather = father familyTree
-    t0 = error "TODO: implement familyTree2Tree"
-    t1 = error "TODO: impleemnt familyTree2Tree"
-  in TNode (name familyTree) (t0 ++ t1)
+    parents = maybeToList (mother ft) ++ maybeToList (father ft)
+    subtrees = map familyTree2Tree parents
+  in TNode (name ft) subtrees
 
 -- Exercise G
 --------------------------------------------------------------------------------
@@ -123,9 +121,8 @@ familyTree2Tree familyTree =
 -- what to use for op
 --------------------------------------------------------------------------------
 allFamily :: FamilyTree -> [String]
-allFamily  familyTree =
+allFamily ft =
   let
-    tree = familyTree2Tree familyTree
-    op   = error "TODO: implement allFamily"
-    v    = error "TODO: implement allFamily"
-  in foldt op v tree
+    tree = familyTree2Tree ft
+    op acc x = x : acc
+  in reverse (foldt op [] tree)
