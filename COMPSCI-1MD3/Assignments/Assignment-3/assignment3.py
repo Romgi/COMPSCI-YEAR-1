@@ -11,7 +11,7 @@ def insert(data, s: str)-> None:
     if s[0] in data:
         insert(data[s[0]][0], s[1:])
     else:
-        data[s[0]]= [{}, False]
+        data[s[0]] = [{}, False]
         insert(data[s[0]][0], s[1:])
 
 
@@ -27,7 +27,6 @@ def count_words(data)->int:
     >>> insert(data, "docs")
     >>> insert(data, "document")
     >>> insert(data, "documenting")
-
     >>> count_words(data)
     6
     """
@@ -49,7 +48,6 @@ def contains(data, s: str)-> bool:
     >>> insert(data, "trie")
     >>> insert(data, "try")
     >>> insert(data, "trying")
-    
     >>> contains(data, "try")
     True
     >>> contains(data, "trying")
@@ -83,7 +81,6 @@ def height(data)->int:
     >>> insert(data, "docs")
     >>> insert(data, "document")
     >>> insert(data, "documenting")
-
     >>> height(data)
     11
     """
@@ -99,7 +96,7 @@ def height(data)->int:
         return max_len
 
     return dfs(data, 0)
-    
+
 
 def count_from_prefix(data, prefix: str)-> int:
     """
@@ -107,7 +104,7 @@ def count_from_prefix(data, prefix: str)-> int:
     prefix, but is not equal to prefix. You may assume data is a valid
     trie.
 
-    data = {}
+    >>> data = {}
     >>> insert(data, "python")
     >>> insert(data, "pro")
     >>> insert(data, "professionnal")
@@ -115,11 +112,10 @@ def count_from_prefix(data, prefix: str)-> int:
     >>> insert(data, "programming")
     >>> insert(data, "programmer")
     >>> insert(data, "programmers")
-
     >>> count_from_prefix(data, 'pro')
     5
     """
-    # Empty prefix: all words start with "", and none is equal to ""
+    # Empty prefix: all words start with "", and none equals ""
     if prefix == "":
         return count_words(data)
 
@@ -128,21 +124,19 @@ def count_from_prefix(data, prefix: str)-> int:
         if ch not in node:
             return 0
         subtrie, is_word = node[ch]
-        # At the last character of prefix: words that *extend* prefix
-        # are exactly the words in this subtrie.
         if i == len(prefix) - 1:
             return count_words(subtrie)
         node = subtrie
     return 0
-    
 
-def get_suggestions(data, prefix:str)-> List[str]:
+
+def get_suggestions(data, prefix: str)-> List[str]:
     """
     Returns a list of words which are encoded in data, and starts with
     prefix, but is not equal to prefix. You may assume data is a valid
     trie.
 
-    data = {}
+    >>> data = {}
     >>> insert(data, "python")
     >>> insert(data, "pro")
     >>> insert(data, "professionnal")
@@ -150,11 +144,10 @@ def get_suggestions(data, prefix:str)-> List[str]:
     >>> insert(data, "programming")
     >>> insert(data, "programmer")
     >>> insert(data, "programmers")
-
     >>> get_suggestions(data, "progr")
     ['program', 'programming', 'programmer', 'programmers']
     """
-    # Find the trie node corresponding to the end of prefix
+    # Find node matching the prefix
     node = data
     if prefix == "":
         start_subtrie = data
@@ -171,7 +164,6 @@ def get_suggestions(data, prefix:str)-> List[str]:
     suggestions: List[str] = []
 
     def dfs(curr_node, curr_prefix):
-        # Iterate in insertion order so the output ordering matches the example
         for ch, (child, is_word) in curr_node.items():
             new_word = curr_prefix + ch
             if is_word:
