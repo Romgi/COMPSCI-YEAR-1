@@ -8,3 +8,9 @@ def has_snowed(d: Dict[str, int]) -> bool:
     return result
 
 
+def remove_several(L: List[int], x: int, k: int) -> List[int]:
+    if L == [] or k == 0:
+        return L
+    if L[0] == k:
+        return remove_several(L[1:], x, k-1)
+    return L[0] + remove_several(L[1:], x, k)
