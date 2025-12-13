@@ -14,3 +14,4 @@ def remove_several(L: List[int], x: int, k: int) -> List[int]:
     if L[0] == k:
         return remove_several(L[1:], x, k-1)
     return L[0] + remove_several(L[1:], x, k)
+
