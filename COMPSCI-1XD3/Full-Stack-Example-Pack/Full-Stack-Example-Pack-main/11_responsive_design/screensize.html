@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!--
+	Reports the size of the browser window. Use this for
+	testing your media queries. Don't forget to test the
+	boundaries (e.g. if your page should look different at
+	768px or less, check 767px, 768px and 769px)
+	
+	The page also uses media queries to set an appropriate
+	font size depending on the size of the browser.
+	
+	Sam Scott, November 2014
+-->
+<html>
+	<head>
+		<title>Screen Size</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<style>
+			p {
+				font-family: sans-serif;
+				font-size: 60px;
+				text-align:center;
+			}
+			p~p {
+				color:white;
+			}
+			small {
+				font-family: sans-serif;
+				font-weight: bold;
+				text-align:center;
+				width:200px;
+				margin:auto;
+				display:block;
+				color:rgb(128,0,0);
+			}
+			@media (max-height: 120px), (max-width: 320px) {
+				p {
+					font-size:40px;
+				}
+			}
+			@media (max-height: 80px) {
+				p {
+					font-size:20px;
+				}
+			}
+			@media (max-height: 40px) {
+				p {
+					font-size:10px;
+				}
+			}
+		</style>
+		<script type="text/javascript">
+			// this function changes the contents of the <p> element
+			// to report the current size of the browser window
+			function reportSize(event) {
+				document.querySelector("p").innerHTML = window.innerWidth+" x "+window.innerHeight;
+			}
+			
+			// configure the browser to call the function above
+			// when the page is loaded and whenever it is resized
+			window.onload = reportSize;
+			window.onresize = reportSize;
+		</script>
+	</head>
+	<body>
+		<p></p>
+		<small>Make sure your zoom level in this window is the same as the window you are testing.</small>
+		<p>.</p>.<p>.</p>.<p>.</p>.<p>.</p>.<p>.</p>.<p>.</p>.<p>.</p>.<p>.</p>.<p>.</p>.<p>.</p>.<p>.</p>.<p>.</p>.<p>.</p>.<p>.</p>.<p>.</p>.<p>.</p>.<p>.</p>.<p>.</p>.<p>.</p>.<p>.</p>.<p>.</p>.<p>.</p>.<p>.</p>.<p>.</p>.<p>.</p>.<p>.</p>.<p>.</p>.<p>.</p>.<p>.</p>.<p>.</p>.<p>.</p>.<p>.</p>.<p>.</p>.<p>.</p>.<p>.</p>.<p>.</p>
+	</body>
+</html>

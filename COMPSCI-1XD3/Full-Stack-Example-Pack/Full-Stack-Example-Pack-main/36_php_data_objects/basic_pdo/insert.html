@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<!-- Example database insert. Make sure you have imported grades.sql
+and changed connect.php to contain your login information.
+Sam Scott, McMaster University, 2025 -->
+<html>
+
+<head>
+    <title>Insert Form</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/basic_examples.css">
+</head>
+
+<body>
+    <form action="insert.php" method="POST">
+        <div>
+            <input type="text" name="first" placeholder="First Name" required>
+        </div>
+        <div>
+            <input type="text" name="last" placeholder="Last Name" required>
+        </div>
+        <div>
+            <input type="date" name="start" required>
+        </div>
+        <div>
+            <input type="submit">
+        </div>
+    </form>
+</body>
+
+</html>

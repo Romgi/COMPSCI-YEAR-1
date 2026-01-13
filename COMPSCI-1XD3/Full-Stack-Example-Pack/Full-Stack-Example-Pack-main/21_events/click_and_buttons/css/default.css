@@ -1,0 +1,15 @@
+/* 
+    Default styles for the PHP demo pages
+    Created on : 25-Jan-2015, 1:40:09 PM
+    Author     : Sam Scott
+*/
+body {
+    font-family: sans-serif;
+}
+h1 {
+    font-size:16px;
+}
+p {
+    font-family: monospace;
+    font-size:14px;
+}
