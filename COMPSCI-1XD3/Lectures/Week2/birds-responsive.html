@@ -23,7 +23,7 @@ web page and include your name as author.
         }
         #header {
             padding: 30px;
-            padding-top: 50px;
+            padding-top: 40px;
             margin-bottom: 20px;
             display: flex;
         }
@@ -35,11 +35,10 @@ web page and include your name as author.
         }
         #container {
             background-color: lightblue;
-            max-width: 500px;
-            margin: auto;
+            /* max-width: 500px;
+            margin: auto; */
         }
-
-        .title {
+        .tile {
             text-align: center;
             padding: 10px;
             border: 5px solid darkblue;
@@ -47,16 +46,30 @@ web page and include your name as author.
             margin-top: 20px;
             border-radius: 30px;
         }
-        a.nav-link {
-            padding: 20px;     
-            /* border-radius: 10px; */
+        #nav a{
+            padding: 50px;
+            padding-bottom: 15px;
+            padding-top: 15px;
             background-color: darkgray;
             color:beige;
             width: 25%;
         }
-        #nav{
-            padding-top: 20px;
-            padding-bottom: 20px;
+        #content{
+            display: flex;
+            justify-content: space-between;
+        }
+        div.tile{
+            width: 32%;
+        }
+        .tile img{
+            width: 80%;
+        }
+
+        @media (max-width: 700px) {
+            #header {
+                background-color: coral;
+            }
+
         }
     </style>
 </head>
@@ -74,23 +87,23 @@ web page and include your name as author.
             <a class="nav-link" href="https://example.com">Link 4</a>
         </div>
         <div id="content">
-            <div class="title">
+            <div class="tile">
                 <h2>Here's a heading</h2>
                 <p>Here's a paragraph</p>
                 <img src="images/bird.png" width="100">
             </div>
-            <div class="title">
+            <div class="tile">
                 <h2>Here's a heading</h2>
                 <p>Here's a paragraph</p>
                 <img src="images/bird.png" width="100">
             </div>
-            <div class="title">
+            <div class="tile">
                 <h2>Here's a heading</h2>
                 <p>Here's a paragraph</p>
                 <img src="images/bird.png" width="100">
             </div>
-            <div id="footer">&copy; 2026 Jonathan Graydon, McMaster University </div>
         </div>
+        <div id="footer">&copy; 2026 Jonathan Graydon, McMaster University </div>
 </body>
 
 </html>
