@@ -62,7 +62,6 @@ main {
   margin: 0 auto;
 }
 
-/* Sections feel intentional */
 section {
   margin-bottom: 32px;
 }
@@ -77,25 +76,22 @@ section h3 {
   color: #b5d9ff;
 }
 
-/* Paragraph spacing */
 p {
   margin-bottom: 12px;
 }
 
-/* Lists */
 ul,
 ol {
   padding-left: 20px;
 }
 
-/* Horizontal rules */
 hr {
   border: none;
   border-top: 1px solid #333;
   margin: 24px 0;
 }
 
-/* ===== Images (GLOBAL) ===== */
+/* ===== Images ===== */
 img {
   border-radius: 6px;
   border: 1px solid #333;
@@ -104,7 +100,55 @@ img {
   height: auto;
 }
 
-/* ===== Footer (FIXED & OVERRIDDEN) ===== */
+/* ===== Link Buttons ===== */
+.link-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.link-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background-color: #1a1a1a;
+  border: 1px solid #2b2b2b;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #eee !important;
+  line-height: 1;
+  box-sizing: border-box;
+  transition: background-color 0.15s ease, transform 0.15s ease,
+    box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.link-button img {
+  width: 22px !important;
+  height: 22px !important;
+  max-width: 22px !important;
+  max-height: 22px !important;
+  object-fit: contain;
+  border: none;
+  margin: 0;
+  display: block;
+}
+
+.link-button:hover {
+  background-color: #262626;
+  border-color: #3a3a3a;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+.link-button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px #0084ff;
+}
+
+
+/* ===== Footer ===== */
 footer.footer {
   background-color: #111 !important;
   border-top: 1px solid #333;
@@ -130,13 +174,11 @@ footer.footer {
   opacity: 0.9;
 }
 
-/* Footer links container */
 .footer-links {
   display: flex;
   gap: 12px;
 }
 
-/* Footer buttons */
 .footer-link {
   display: flex;
   align-items: center;
@@ -151,7 +193,6 @@ footer.footer {
   transition: background-color 0.15s ease, transform 0.15s ease;
 }
 
-/* FORCE footer icon size (overrides global img rules) */
 .footer-link img {
   width: 22px !important;
   height: 22px !important;
@@ -163,13 +204,12 @@ footer.footer {
   display: block;
 }
 
-/* Hover effect */
 .footer-link:hover {
   background-color: #262626;
   transform: translateY(-2px);
 }
 
-/* Mobile footer layout */
+/* ===== Responsive Design ===== */
 @media (max-width: 600px) {
   .footer-content {
     flex-direction: column;
