@@ -1,10 +1,30 @@
+/* 
+Jonathan Graydon
+McMaster University Computer Science 1XD3
+Portfolio Website
+Global Stylesheet
+*/
+
 /* ===== Global ===== */
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: Arial, Helvetica, sans-serif;
   color: #eaeaea;
   line-height: 1.6;
-  margin: 20px;
+  margin: 0;
+  padding: 20px;
   background-color: #000000;
+}
+
+/* Prevent long links/words from breaking layouts */
+p,
+h1,
+h2,
+h3 {
+  overflow-wrap: anywhere;
 }
 
 /* ===== Header ===== */
@@ -22,6 +42,12 @@ header h1 {
 header p {
   margin-top: 0;
   color: #b5d9ff;
+}
+
+/* Make the header image responsive + nicely sized */
+header img {
+  width: min(420px, 100%);
+  height: auto;
 }
 
 /* ===== Navigation ===== */
@@ -56,9 +82,14 @@ nav {
   box-shadow: 0 0 0 2px #0084ff inset;
 }
 
+.nav-link:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px #0084ff, 0 0 0 4px rgba(0, 132, 255, 0.35);
+}
+
 /* ===== Main Content ===== */
 main {
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
 }
 
@@ -102,20 +133,20 @@ img {
 
 /* ===== Link Buttons ===== */
 .link-buttons {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 12px;
-  flex-wrap: wrap;
   margin-top: 12px;
 }
 
 .link-button {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 12px;
+  gap: 10px;
+  padding: 10px 12px;
   background-color: #1a1a1a;
   border: 1px solid #2b2b2b;
-  border-radius: 8px;
+  border-radius: 10px;
   text-decoration: none;
   color: #eee !important;
   line-height: 1;
@@ -147,7 +178,6 @@ img {
   box-shadow: 0 0 0 2px #0084ff;
 }
 
-
 /* ===== Footer ===== */
 footer.footer {
   background-color: #111 !important;
@@ -177,6 +207,8 @@ footer.footer {
 .footer-links {
   display: flex;
   gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .footer-link {
@@ -211,8 +243,38 @@ footer.footer {
 
 /* ===== Responsive Design ===== */
 @media (max-width: 600px) {
+  body {
+    padding: 14px;
+  }
+
+  nav {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .nav-link {
+    width: 100%;
+    text-align: center;
+    padding: 12px 16px;
+  }
+
   .footer-content {
     flex-direction: column;
     text-align: center;
+  }
+
+  .footer-links {
+    width: 100%;
+  }
+
+  .footer-link {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 700px) {
+  .link-buttons {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
