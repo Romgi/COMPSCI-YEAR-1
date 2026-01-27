@@ -1,28 +1,33 @@
 :root {
     --color-calendar-graph-day-bg: #202020;
-    --color-calendar-graph-day-L1-bg: #39dd34;
-    --color-calendar-graph-day-L2-bg: #45a045;
-    --color-calendar-graph-day-L3-bg: #047526;
-    --color-calendar-graph-day-L4-bg: #0a4208;
+    --color-calendar-graph-day-L1-bg: #4497eb;
+    --color-calendar-graph-day-L2-bg: #205f9e;
+    --color-calendar-graph-day-L3-bg: #0d2d4c;
+    --color-calendar-graph-day-L4-bg: #061e36;
 }
 
 .ContributionCalendar-day[data-level='0'] {
+    border-radius: 2px;
     background-color: var(--color-calendar-graph-day-bg);
 }
 
 .ContributionCalendar-day[data-level='1'] {
+    border-radius: 2px;
     background-color: var(--color-calendar-graph-day-L1-bg);
 }
 
 .ContributionCalendar-day[data-level='2'] {
+    border-radius: 2px;
     background-color: var(--color-calendar-graph-day-L2-bg);
 }
 
 .ContributionCalendar-day[data-level='3'] {
+    border-radius: 2px;
     background-color: var(--color-calendar-graph-day-L3-bg);
 }
 
 .ContributionCalendar-day[data-level='4'] {
+    border-radius: 2px;
     background-color: var(--color-calendar-graph-day-L4-bg);
 }
 
