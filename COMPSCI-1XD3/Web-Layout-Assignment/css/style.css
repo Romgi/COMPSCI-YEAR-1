@@ -1,0 +1,418 @@
+/*
+Jonathan Graydon
+McMaster University Computer Science 1XD3
+Web Layout Assignment (Responsive News Layout)
+Date: 2026-01-30
+*/
+
+/* ===== Base / Shared ===== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #ffffff;
+}
+
+.page {
+  margin: 10px;
+  border: 1px solid #cfcfcf;
+  background: #fff;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.site-header {
+  padding: 10px 10px 0 10px;
+}
+
+.rule {
+  margin: 10px 0 0 0;
+  border: none;
+  border-top: 2px solid #d2d2d2;
+}
+
+.site-title {
+  margin: 8px 0 8px 0;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+/* ===== Navigation ===== */
+.top-nav {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 6px 0 10px 0;
+  border-bottom: 1px solid #d6d6d6;
+}
+
+.nav-item {
+  padding: 6px 6px;
+  border-radius: 6px;
+}
+
+@media (hover: hover) {
+  .nav-item:hover {
+    background: rgba(0, 0, 0, 0.06);
+  }
+}
+
+.mobile-bar {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 0 0 0;
+}
+
+.hamburger {
+  width: 46px;
+  height: 42px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===== Story cards ===== */
+.content {
+  padding: 10px;
+}
+
+.story {
+  border: 2px solid #d2d2d2;
+  background: #ffffff;
+  padding: 8px;
+}
+
+.story img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 2px solid #d2d2d2;
+}
+
+.story h2,
+.story h3 {
+  margin: 8px 0 6px 0;
+}
+
+.body {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.desktop-only {
+  display: none;
+}
+
+.tablet-mobile-only {
+  display: block;
+}
+
+.mobile-only {
+  display: none;
+}
+
+/* ===== Footer ===== */
+.site-footer {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  background: #f1f1f1;
+  border-top: 2px solid #d2d2d2;
+}
+
+.footer-col {
+  flex: 1;
+  padding: 6px 10px;
+}
+
+.footer-col h4 {
+  margin: 0 0 6px 0;
+  font-size: 16px;
+}
+
+.footer-col a {
+  display: block;
+  padding: 2px 0;
+  opacity: 0.95;
+}
+
+@media (hover: hover) {
+  .footer-col a:hover {
+    opacity: 1;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+  }
+}
+
+.footer-rule {
+  height: 10px;
+}
+
+/* ============================================================
+   Desktop layout (>= 769px)
+   - Newspaper-ish colors & fonts
+   - Desktop nav visible
+   - 8 stories (2 lead + 6 grid)
+   - 4 sentences shown for each story
+============================================================ */
+@media (min-width: 769px) {
+  body {
+    background: #ece8df;
+  }
+
+  .page {
+    background: #f7f2e8;
+  }
+
+  .site-title {
+    font-family: "Georgia", "Times New Roman", serif;
+    font-size: 56px;
+    font-weight: 700;
+  }
+
+  .top-nav {
+    display: flex;
+    font-family: "Georgia", "Times New Roman", serif;
+    font-size: 14px;
+  }
+
+  .nav-desktop {
+    display: flex;
+  }
+
+  .nav-tablet {
+    display: none;
+  }
+
+  .mobile-bar {
+    display: none;
+  }
+
+  .content {
+    display: flex;
+    gap: 10px;
+    align-items: stretch;
+  }
+
+  .lead-column {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .side-grid {
+    flex: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    align-content: start;
+  }
+
+  .mobile-stack {
+    display: none;
+  }
+
+  .story-lead h2 {
+    font-size: 26px;
+    font-family: "Georgia", "Times New Roman", serif;
+  }
+
+  .story-small h3 {
+    font-size: 16px;
+    font-family: "Georgia", "Times New Roman", serif;
+  }
+
+  .desktop-only {
+    display: block;
+  }
+
+  .tablet-mobile-only {
+    display: none;
+  }
+}
+
+/* ============================================================
+   Tablet layout (481px–768px)
+   - Newspaper-ish colors & fonts
+   - Tablet nav visible (4 items)
+   - 5 stories (2 lead + 3 side)
+   - First two headlines larger
+============================================================ */
+@media (min-width: 481px) and (max-width: 768px) {
+  body {
+    background: #ece8df;
+  }
+
+  .page {
+    background: #f7f2e8;
+  }
+
+  .site-title {
+    font-family: "Georgia", "Times New Roman", serif;
+    font-size: 44px;
+    font-weight: 700;
+  }
+
+  .nav-desktop {
+    display: none;
+  }
+
+  .nav-tablet {
+    display: flex;
+    font-family: "Georgia", "Times New Roman", serif;
+    font-size: 14px;
+  }
+
+  .mobile-bar {
+    display: none;
+  }
+
+  .content {
+    display: flex;
+    gap: 10px;
+  }
+
+  .lead-column {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .side-grid {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .mobile-stack {
+    display: none;
+  }
+
+  .story-lead h2 {
+    font-size: 24px;
+    font-family: "Georgia", "Times New Roman", serif;
+  }
+
+  .story-small h3 {
+    font-size: 16px;
+    font-family: "Georgia", "Times New Roman", serif;
+  }
+
+  .desktop-only {
+    display: none;
+  }
+
+  .tablet-mobile-only {
+    display: block;
+  }
+}
+
+/* ============================================================
+   Mobile layout (<= 480px)
+   - Modern colors & fonts
+   - Hamburger icon shown
+   - 5 stories stacked
+============================================================ */
+@media (max-width: 480px) {
+  body {
+    background: #0b0f14;
+  }
+
+  .page {
+    border-color: rgba(255, 255, 255, 0.12);
+    background: #0f1620;
+    color: #e8eef6;
+  }
+
+  .site-header {
+    padding: 10px;
+  }
+
+  .site-title {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 34px;
+    font-weight: 800;
+    margin-top: 10px;
+  }
+
+  .rule {
+    border-top-color: rgba(255, 255, 255, 0.18);
+  }
+
+  .nav-desktop,
+  .nav-tablet {
+    display: none;
+  }
+
+  .mobile-bar {
+    display: flex;
+    color: #e8eef6;
+  }
+
+  .content {
+    display: block;
+    padding: 10px;
+  }
+
+  .lead-column {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .side-grid {
+    display: none;
+  }
+
+  .mobile-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .story {
+    border-color: rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .story img {
+    border-color: rgba(255, 255, 255, 0.18);
+  }
+
+  .desktop-only {
+    display: none;
+  }
+
+  .tablet-mobile-only {
+    display: block;
+  }
+
+  .mobile-only {
+    display: block;
+  }
+
+  .site-footer {
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.04);
+    border-top-color: rgba(255, 255, 255, 0.18);
+  }
+
+  .footer-col a {
+    color: #e8eef6;
+    opacity: 0.9;
+  }
+}

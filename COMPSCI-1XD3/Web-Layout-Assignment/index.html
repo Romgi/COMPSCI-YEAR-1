@@ -1,0 +1,181 @@
+<!doctype html>
+<!--
+Jonathan Graydon
+McMaster University Computer Science 1XD3
+Web Layout Assignment (Responsive News Layout)
+Date: 2026-01-30
+-->
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Daily News</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <div class="page">
+    <header class="site-header">
+      <!-- Desktop / Tablet navigation -->
+      <nav class="top-nav nav-desktop" aria-label="Site sections (desktop)">
+        <a href="https://example.com" class="nav-item">Headlines</a>
+        <a href="https://example.com" class="nav-item">Politics</a>
+        <a href="https://example.com" class="nav-item">Sports</a>
+        <a href="https://example.com" class="nav-item">Business</a>
+        <a href="https://example.com" class="nav-item">Local</a>
+        <a href="https://example.com" class="nav-item">Arts</a>
+        <a href="https://example.com" class="nav-item">Weather</a>
+      </nav>
+
+      <nav class="top-nav nav-tablet" aria-label="Site sections (tablet)">
+        <a href="https://example.com" class="nav-item">Headlines</a>
+        <a href="https://example.com" class="nav-item">Sports</a>
+        <a href="https://example.com" class="nav-item">Local</a>
+        <a href="https://example.com" class="nav-item">Weather</a>
+      </nav>
+
+      <div class="mobile-bar">
+        <a class="hamburger" href="https://example.com" aria-label="Menu">
+          <img src="images/hamburger.png" alt="Menu" />
+        </a>
+        <span class="mobile-spacer" aria-hidden="true"></span>
+      </div>
+
+      <h1 class="site-title">The Daily News</h1>
+      <hr class="rule" />
+    </header>
+
+    <main class="content" aria-label="Top stories">
+      <!-- LEFT column -->
+      <section class="lead-column">
+        <article class="story story-lead">
+          <img src="images/story1.jpg" alt="Story 1 placeholder image" />
+          <h2>Headline One: City Council Approves Late-Night Transit Trial</h2>
+          <p class="body desktop-only">After months of debate, the city will run a three-month pilot extending bus
+            service past midnight on key routes. Officials say the goal is safer commutes for late shifts and students.
+            Riders can expect more frequent service on weekends. The transit agency will publish on-time and safety
+            reports every two weeks.</p>
+          <p class="body tablet-mobile-only">After months of debate, the city will run a three-month pilot extending bus
+            service past midnight on key routes.</p>
+        </article>
+
+        <article class="story story-lead">
+          <img src="images/story2.jpg" alt="Story 2 placeholder image" />
+          <h2>Headline Two: Local Researchers Build Faster Battery Prototype</h2>
+          <p class="body desktop-only">A university team announced a lab prototype that charges more quickly while
+            keeping temperatures low. The researchers say the design could reduce charging time for small devices and
+            e-bikes. Independent testing will be needed before any commercial release. The team plans to publish full
+            results later this semester.</p>
+          <p class="body tablet-mobile-only">A university team announced a lab prototype that charges more quickly while
+            keeping temperatures low.</p>
+        </article>
+      </section>
+
+      <!-- RIGHT column -->
+      <section class="side-grid" aria-label="More stories">
+        <article class="story story-small show-on-desktop show-on-tablet">
+          <img src="images/story3.jpg" alt="Story 3 placeholder image" />
+          <h3>Headline Three: Community Garden Expands With New Plots</h3>
+          <p class="body desktop-only">Volunteers added raised beds and a compost station to support more neighbourhood
+            growers this spring.</p>
+          <p class="body tablet-mobile-only">Volunteers added raised beds and a compost station to support more
+            neighbourhood growers this spring.</p>
+        </article>
+
+        <article class="story story-small show-on-desktop show-on-tablet">
+          <img src="images/story4.jpg" alt="Story 4 placeholder image" />
+          <h3>Headline Four: High School Robotics Team Hosts Open Workshop</h3>
+          <p class="body desktop-only">Students invited beginners to learn basic CAD and wiring in a hands-on Saturday
+            session.</p>
+          <p class="body tablet-mobile-only">Students invited beginners to learn basic CAD and wiring in a hands-on
+            Saturday session.</p>
+        </article>
+
+        <article class="story story-small show-on-desktop show-on-tablet">
+          <img src="images/story5.jpg" alt="Story 5 placeholder image" />
+          <h3>Headline Five: Winter Trail Conditions Improve After Fresh Grooming</h3>
+          <p class="body desktop-only">Parks staff report smoother routes after overnight work, but remind visitors to
+            watch for icy patches.</p>
+          <p class="body tablet-mobile-only">Parks staff report smoother routes after overnight work, but remind
+            visitors to watch for icy patches.</p>
+        </article>
+
+        <article class="story story-small desktop-only">
+          <img src="images/story6.jpg" alt="Story 6 placeholder image" />
+          <h3>Headline Six: Museum Announces Free Admission Weekend</h3>
+          <p class="body">The museum will offer free entry and short guided tours as part of a new outreach initiative.
+            Organizers say the goal is to make exhibits more accessible to families. Several local artists will host
+            drop-in demonstrations. Tickets are first-come, first-served at the door.</p>
+        </article>
+
+        <article class="story story-small desktop-only">
+          <img src="images/story7.jpg" alt="Story 7 placeholder image" />
+          <h3>Headline Seven: Small Business Grant Program Opens Applications</h3>
+          <p class="body">The city launched a new grant for storefront improvements in designated corridors. Applicants
+            must submit a simple budget and timeline. Priority will go to accessibility upgrades and energy-efficient
+            retrofits. The deadline is in four weeks.</p>
+        </article>
+
+        <article class="story story-small desktop-only">
+          <img src="images/story8.jpg" alt="Story 8 placeholder image" />
+          <h3>Headline Eight: Sports League Adds More Games to Spring Schedule</h3>
+          <p class="body">League officials confirmed an expanded schedule to reduce bye-weeks and improve travel
+            planning. Coaches say the change will help maintain momentum. Updated fixtures will be posted online by the
+            end of the week. Fans are encouraged to check for venue updates.</p>
+        </article>
+      </section>
+
+      <!-- Mobile-only -->
+      <section class="mobile-stack" aria-label="More stories (mobile)">
+        <article class="story mobile-only">
+          <img src="images/story3.jpg" alt="Story 3 placeholder image" />
+          <h2>Headline Three: Community Garden Expands With New Plots</h2>
+          <p class="body">Volunteers added raised beds and a compost station to support more neighbourhood growers this
+            spring.</p>
+        </article>
+
+        <article class="story mobile-only">
+          <img src="images/story4.jpg" alt="Story 4 placeholder image" />
+          <h2>Headline Four: High School Robotics Team Hosts Open Workshop</h2>
+          <p class="body">Students invited beginners to learn basic CAD and wiring in a hands-on Saturday session.</p>
+        </article>
+
+        <article class="story mobile-only">
+          <img src="images/story5.jpg" alt="Story 5 placeholder image" />
+          <h2>Headline Five: Winter Trail Conditions Improve After Fresh Grooming</h2>
+          <p class="body">Parks staff report smoother routes after overnight work, but remind visitors to watch for icy
+            patches.</p>
+        </article>
+      </section>
+    </main>
+
+    <footer class="site-footer" aria-label="Footer links">
+      <div class="footer-col">
+        <h4>Subscribe</h4>
+        <a href="https://example.com">Digital Access</a>
+        <a href="https://example.com">Home Delivery</a>
+        <a href="https://example.com">Gift Subscriptions</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Account</h4>
+        <a href="https://example.com">Log In</a>
+        <a href="https://example.com">Manage</a>
+        <a href="https://example.com">Delivery</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="https://example.com">Tip Hotline</a>
+        <a href="https://example.com">Help &amp; FAQs</a>
+        <a href="https://example.com">Advertising</a>
+      </div>
+    </footer>
+
+    <div class="footer-rule" aria-hidden="true"></div>
+  </div>
+</body>
+
+</html>
