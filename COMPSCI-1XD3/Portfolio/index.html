@@ -5,10 +5,11 @@ McMaster University Computer Science 1XD3
 Portfolio Website
 Landing Page
 -->
-<html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Jonathan Graydon | Portfolio</title>
     <link rel="stylesheet" href="css/style.css" />
 </head>
@@ -16,14 +17,13 @@ Landing Page
 <body>
     <header>
         <h1>Jonathan Graydon</h1>
-        <img src="images/FRCDriverStation.JPG" alt="A placeholder profile image" width="400" />
         <p>My Web Development Portfolio</p>
-
         <nav>
             <a class="nav-link active" href="index.html">Home</a>
             <a class="nav-link" href="work.html">Work</a>
             <a class="nav-link" href="journal.html">Journal</a>
         </nav>
+        <img src="images/FRCDriverStation.JPG" alt="A placeholder profile image" width="400" />
     </header>
 
     <main>
@@ -43,6 +43,35 @@ Landing Page
                 local team 9062 Critical Circuits where we use Java to program our robots. I have also been an indie
                 game developer for the past few years, creating games using Unity and C#.
             </p>
+        </section>
+        <section class="github-calendar"> <!-- GitHub Calendar Library-->
+            <!-- Credit to Bloggify on github for creating this library
+             Repository and license:
+            https://github.com/Bloggify/github-calendar-->
+            <!-- Include the library. -->
+            <script src="js/github-calendar.min.js">
+            </script>
+
+            <!-- Optionally, include the theme (if you don't want to struggle to write the CSS) -->
+            <link rel="stylesheet" href="css/github-calendar-responsive.css" />
+
+            <!-- Prepare a container for your calendar. -->
+            <div class="calendar">
+                <!-- Loading stuff -->
+                Loading the data just for you.
+            </div>
+
+            <script>
+                // or enable responsive functionality:
+                GitHubCalendar(".calendar", "romgi", { responsive: true });
+            </script>
+            <div class="link-buttons">
+                <a href="https://github.com/Bloggify/github-calendar/blob/gh-pages/LICENSE" target="_blank"
+                    rel="noopener" class="link-button">
+                    <img src="images/license.png" alt="MIT License" />
+                    <span>GitHub Widget MIT © Bloggify</span>
+                </a>
+            </div>
         </section>
     </main>
 
