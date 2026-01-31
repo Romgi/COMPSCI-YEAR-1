@@ -63,6 +63,7 @@ a {
   }
 }
 
+/* ===== Mobile bar & Hamburger (IMAGE) ===== */
 .mobile-bar {
   display: none;
   align-items: center;
@@ -78,6 +79,19 @@ a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+}
+
+.hamburger img {
+  width: 28px;
+  height: auto;
+  display: block;
+  cursor: pointer;
+}
+
+@media (hover: hover) {
+  .hamburger img:hover {
+    opacity: 0.75;
+  }
 }
 
 /* ===== Story cards ===== */
@@ -160,10 +174,6 @@ a {
 
 /* ============================================================
    Desktop layout (>= 769px)
-   - Newspaper-ish colors & fonts
-   - Desktop nav visible
-   - 8 stories (2 lead + 6 grid)
-   - 4 sentences shown for each story
 ============================================================ */
 @media (min-width: 769px) {
   body {
@@ -244,10 +254,6 @@ a {
 
 /* ============================================================
    Tablet layout (481px–768px)
-   - Newspaper-ish colors & fonts
-   - Tablet nav visible (4 items)
-   - 5 stories (2 lead + 3 side)
-   - First two headlines larger
 ============================================================ */
 @media (min-width: 481px) and (max-width: 768px) {
   body {
@@ -322,9 +328,6 @@ a {
 
 /* ============================================================
    Mobile layout (<= 480px)
-   - Modern colors & fonts
-   - Hamburger icon shown
-   - 5 stories stacked
 ============================================================ */
 @media (max-width: 480px) {
   body {
