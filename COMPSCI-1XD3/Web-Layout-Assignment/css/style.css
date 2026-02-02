@@ -63,9 +63,10 @@ a {
   }
 }
 
-/* ===== Mobile bar & Hamburger (IMAGE) ===== */
+/* ===== Hamburger Bar (ALL LAYOUTS) ===== */
 .mobile-bar {
-  display: none;
+  display: flex;
+  /* 🔹 now visible everywhere */
   align-items: center;
   justify-content: space-between;
   padding: 6px 0 0 0;
@@ -74,7 +75,7 @@ a {
 .hamburger {
   width: 46px;
   height: 42px;
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(0, 0, 0, 0.25);
   border-radius: 10px;
   display: inline-flex;
   align-items: center;
@@ -92,6 +93,10 @@ a {
   .hamburger img:hover {
     opacity: 0.75;
   }
+}
+
+.mobile-spacer {
+  flex: 1;
 }
 
 /* ===== Story cards ===== */
@@ -204,10 +209,6 @@ a {
     display: none;
   }
 
-  .mobile-bar {
-    display: none;
-  }
-
   .content {
     display: flex;
     gap: 10px;
@@ -280,10 +281,6 @@ a {
     font-size: 14px;
   }
 
-  .mobile-bar {
-    display: none;
-  }
-
   .content {
     display: flex;
     gap: 10px;
@@ -335,7 +332,7 @@ a {
   }
 
   .page {
-    border-color: rgba(255, 255, 255, 0.12);
+    border-color: rgba(0, 0, 0, 0.15);
     background: #81b6ff;
     color: #000000;
   }
@@ -352,17 +349,7 @@ a {
   }
 
   .rule {
-    border-top-color: rgba(255, 255, 255, 0.18);
-  }
-
-  .nav-desktop,
-  .nav-tablet {
-    display: none;
-  }
-
-  .mobile-bar {
-    display: flex;
-    color: #e8eef6;
+    border-top-color: rgba(0, 0, 0, 0.2);
   }
 
   .content {
@@ -388,12 +375,12 @@ a {
   }
 
   .story {
-    border-color: rgba(255, 255, 255, 0.18);
-    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(0, 0, 0, 0.15);
+    background: rgba(255, 255, 255, 0.6);
   }
 
   .story img {
-    border-color: rgba(255, 255, 255, 0.18);
+    border-color: rgba(0, 0, 0, 0.15);
   }
 
   .desktop-only {
@@ -410,12 +397,12 @@ a {
 
   .site-footer {
     flex-direction: column;
-    background: rgba(255, 255, 255, 0.04);
-    border-top-color: rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.6);
+    border-top-color: rgba(0, 0, 0, 0.15);
   }
 
   .footer-col a {
-    color: #585858;
+    color: #000000;
     opacity: 0.9;
   }
 }
