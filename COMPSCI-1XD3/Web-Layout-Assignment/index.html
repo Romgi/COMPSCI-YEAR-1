@@ -46,32 +46,42 @@ HTML layout reference
 <body>
   <div class="page">
     <header class="site-header">
-      <!-- Desktop / Tablet navigation -->
-      <nav class="top-nav nav-desktop" aria-label="Site sections (desktop)">
-        <a href="https://example.com" class="nav-item">Headlines</a>
-        <a href="https://example.com" class="nav-item">Politics</a>
-        <a href="https://example.com" class="nav-item">Sports</a>
-        <a href="https://example.com" class="nav-item">Business</a>
-        <a href="https://example.com" class="nav-item">Local</a>
-        <a href="https://example.com" class="nav-item">Arts</a>
-        <a href="https://example.com" class="nav-item">Weather</a>
-      </nav>
 
-      <nav class="top-nav nav-tablet" aria-label="Site sections (tablet)">
-        <a href="https://example.com" class="nav-item">Headlines</a>
-        <a href="https://example.com" class="nav-item">Sports</a>
-        <a href="https://example.com" class="nav-item">Local</a>
-        <a href="https://example.com" class="nav-item">Weather</a>
-      </nav>
-
-      <div class="mobile-bar">
-        <a class="hamburger" href="https://example.com" aria-label="Menu">
+      <!-- Desktop/Tablet row: hamburger + nav -->
+      <div class="header-row">
+        <a class="hamburger hamburger-desktop" href="https://example.com" aria-label="Menu">
           <img src="images/menu.svg" alt="Menu" />
         </a>
-        <span class="mobile-spacer" aria-hidden="true"></span>
+
+        <nav class="top-nav nav-desktop" aria-label="Site sections (desktop)">
+          <a href="https://example.com" class="nav-item">Headlines</a>
+          <a href="https://example.com" class="nav-item">Politics</a>
+          <a href="https://example.com" class="nav-item">Sports</a>
+          <a href="https://example.com" class="nav-item">Business</a>
+          <a href="https://example.com" class="nav-item">Local</a>
+          <a href="https://example.com" class="nav-item">Arts</a>
+          <a href="https://example.com" class="nav-item">Weather</a>
+        </nav>
+
+        <nav class="top-nav nav-tablet" aria-label="Site sections (tablet)">
+          <a href="https://example.com" class="nav-item">Headlines</a>
+          <a href="https://example.com" class="nav-item">Sports</a>
+          <a href="https://example.com" class="nav-item">Local</a>
+          <a href="https://example.com" class="nav-item">Weather</a>
+        </nav>
       </div>
 
-      <h1 class="site-title">The Daily News</h1>
+      <!-- Desktop/Tablet title -->
+      <h1 class="site-title site-title-desktop">The Daily News</h1>
+
+      <!-- Mobile title row: hamburger + title -->
+      <div class="title-row">
+        <a class="hamburger hamburger-mobile" href="https://example.com" aria-label="Menu">
+          <img src="images/menu.svg" alt="Menu" />
+        </a>
+        <h1 class="site-title site-title-mobile">The Daily News</h1>
+      </div>
+
       <hr class="rule" />
     </header>
 
@@ -109,7 +119,7 @@ HTML layout reference
 
             Sumitomo tires performed more poorly than others in key priority areas for consumers, such as handling
             capabilities, grip on wet roads, and longevity. Their tires were found to wear more quickly on
-            average, compromising a car's ability to grip the road effectively. All four Sumitomo tires rated by CR –
+            average, compromising a car's ability to grip the road effectively. All four Sumitomo tires rated by CR –
             namely the HTR A/S P03 (all-season tire), HTR Z5 (summer tire), Ice Edge (winter), and Encounter HT2
             (all-season SUV tires) — scored poorly across the board, receiving some of the lowest ratings possible for
             owner satisfaction.</p>
@@ -182,21 +192,23 @@ HTML layout reference
         <article class="story mobile-only">
           <img src="images/story3.png" alt="Story 3 placeholder image" />
           <h2>A practice known as ‘house burping’ is gaining traction online. What is it?</h2>
-          <p class="body">The German trend of “lüften” involves opening the windows of your home a
-            few times a day, in order to air it out, regardless of the temperature outside.</p>
+          <p class="body">The German trend of “lüften” involves opening the windows of your home a few times a day, in
+            order to air it out, regardless of the temperature outside.</p>
         </article>
 
         <article class="story mobile-only">
           <img src="images/story4.png" alt="Story 4 placeholder image" />
           <h2>Leafs’ Rielly exits against Canucks with upper-body injury</h2>
-          <p class="body">Toronto Maple Leafs defenceman Morgan Rielly exited Saturday’s 3-2 shootout
-            win over the Vancouver Canucks with an upper-body injury.</p>
+          <p class="body">Toronto Maple Leafs defenceman Morgan Rielly exited Saturday’s 3-2 shootout win over the
+            Vancouver Canucks with an upper-body injury.</p>
         </article>
 
         <article class="story mobile-only">
           <img src="images/story5.png" alt="Story 5 placeholder image" />
           <h2>Red carpet highlights from the 2026 Grammy Awards</h2>
-          <p class="body">All the must-see looks from music’s biggest night</p>
+          <p class="body">The 68th Grammy Awards, taking place at Crypto.com Arena in Los Angeles and hosted again by
+            Trevor Noah, is sure to bring plenty of exciting live performances and appearances — including on the red
+            carpet.</p>
         </article>
       </section>
     </main>

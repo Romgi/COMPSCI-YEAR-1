@@ -37,41 +37,33 @@ a {
 }
 
 .site-title {
-  margin: 8px 0 8px 0;
   text-align: center;
   letter-spacing: 0.5px;
 }
 
-/* ===== Navigation ===== */
-.top-nav {
+/* ===== Header layout ===== */
+.header-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.title-row {
   display: none;
   align-items: center;
-  justify-content: center;
-  gap: 18px;
-  padding: 6px 0 10px 0;
-  border-bottom: 1px solid #d6d6d6;
+  gap: 10px;
+  margin-top: 6px;
 }
 
-.nav-item {
-  padding: 6px 6px;
-  border-radius: 6px;
+.site-title-desktop {
+  margin: 8px 0 8px 0;
 }
 
-@media (hover: hover) {
-  .nav-item:hover {
-    background: rgba(0, 0, 0, 0.06);
-  }
+.site-title-mobile {
+  margin: 0;
 }
 
-/* ===== Hamburger Bar (ALL LAYOUTS) ===== */
-.mobile-bar {
-  display: flex;
-  /* 🔹 now visible everywhere */
-  align-items: center;
-  justify-content: space-between;
-  padding: 6px 0 0 0;
-}
-
+/* ===== Hamburger (PART OF LAYOUT) ===== */
 .hamburger {
   width: 46px;
   height: 42px;
@@ -80,6 +72,7 @@ a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  flex: 0 0 auto;
 }
 
 .hamburger img {
@@ -95,8 +88,30 @@ a {
   }
 }
 
-.mobile-spacer {
+.hamburger-mobile {
+  display: none;
+}
+
+/* ===== Navigation ===== */
+.top-nav {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 6px 0 10px 0;
+  border-bottom: 1px solid #d6d6d6;
   flex: 1;
+}
+
+.nav-item {
+  padding: 6px 6px;
+  border-radius: 6px;
+}
+
+@media (hover: hover) {
+  .nav-item:hover {
+    background: rgba(0, 0, 0, 0.06);
+  }
 }
 
 /* ===== Story cards ===== */
@@ -191,8 +206,12 @@ a {
 
   .site-title {
     font-family: "Georgia", "Times New Roman", serif;
-    font-size: 56px;
     font-weight: 700;
+  }
+
+  .site-title-desktop {
+    font-size: 56px;
+    display: block;
   }
 
   .top-nav {
@@ -207,6 +226,14 @@ a {
 
   .nav-tablet {
     display: none;
+  }
+
+  .title-row {
+    display: none;
+  }
+
+  .hamburger-desktop {
+    display: inline-flex;
   }
 
   .content {
@@ -267,8 +294,12 @@ a {
 
   .site-title {
     font-family: "Georgia", "Times New Roman", serif;
-    font-size: 44px;
     font-weight: 700;
+  }
+
+  .site-title-desktop {
+    font-size: 44px;
+    display: block;
   }
 
   .nav-desktop {
@@ -279,6 +310,14 @@ a {
     display: flex;
     font-family: "Georgia", "Times New Roman", serif;
     font-size: 14px;
+  }
+
+  .title-row {
+    display: none;
+  }
+
+  .hamburger-desktop {
+    display: inline-flex;
   }
 
   .content {
@@ -337,15 +376,29 @@ a {
     color: #000000;
   }
 
-  .site-header {
-    padding: 10px;
+  /* Hide nav row on mobile (hamburger+nav row) */
+  .header-row {
+    display: none;
   }
 
-  .site-title {
+  /* Hide desktop title on mobile */
+  .site-title-desktop {
+    display: none;
+  }
+
+  /* Show mobile title row: hamburger + title */
+  .title-row {
+    display: flex;
+  }
+
+  .hamburger-mobile {
+    display: inline-flex;
+  }
+
+  .site-title-mobile {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 34px;
     font-weight: 800;
-    margin-top: 10px;
   }
 
   .rule {
