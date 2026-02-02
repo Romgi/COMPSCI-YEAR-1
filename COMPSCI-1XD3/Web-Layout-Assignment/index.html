@@ -1,0 +1,252 @@
+<!doctype html>
+<!--
+Jonathan Graydon
+McMaster University Computer Science 1XD3
+Web Layout Assignment (Responsive News Layout)
+Date: 2026-02-01
+-->
+
+<!--
+Article structure for future reference
+
+article.story.story-lead
+├── img
+│   └── src="images/story#.png"
+│   └── alt="Descriptive image alt text"
+├── h2
+│   └── Headline text
+├── p.body.desktop-only
+│   └── Full multi-sentence story text (desktop only)
+└── p.body.tablet-mobile-only
+    └── Single-sentence version (tablet + mobile)
+
+HTML layout reference
+
+<article class="story story-lead">
+  <img src="images/bird.png" alt="that one bird image from Dr. Scott's lectures" />
+  <h2>Birds take over McMaster!</h2>
+  <p class="body desktop-only">
+     Desktop text
+  </p>
+  <p class="body tablet-mobile-only">
+    Mobile text
+  </p>
+</article>
+-->
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Daily News</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <div class="page">
+    <header class="site-header">
+
+      <!-- Desktop/Tablet row: hamburger + nav -->
+      <div class="header-row">
+        <a class="hamburger hamburger-desktop" href="https://example.com" aria-label="Menu">
+          <img src="images/menu.svg" alt="Menu" />
+        </a>
+
+        <nav class="top-nav nav-desktop" aria-label="Site sections (desktop)">
+          <a href="https://example.com" class="nav-item">Headlines</a>
+          <a href="https://example.com" class="nav-item">Politics</a>
+          <a href="https://example.com" class="nav-item">Sports</a>
+          <a href="https://example.com" class="nav-item">Business</a>
+          <a href="https://example.com" class="nav-item">Local</a>
+          <a href="https://example.com" class="nav-item">Arts</a>
+          <a href="https://example.com" class="nav-item">Weather</a>
+        </nav>
+
+        <nav class="top-nav nav-tablet" aria-label="Site sections (tablet)">
+          <a href="https://example.com" class="nav-item">Headlines</a>
+          <a href="https://example.com" class="nav-item">Sports</a>
+          <a href="https://example.com" class="nav-item">Local</a>
+          <a href="https://example.com" class="nav-item">Weather</a>
+        </nav>
+      </div>
+
+      <!-- Desktop/Tablet title -->
+      <h1 class="site-title site-title-desktop">The Daily News</h1>
+
+      <!-- Mobile title row: hamburger + title -->
+      <div class="title-row">
+        <a class="hamburger hamburger-mobile" href="https://example.com" aria-label="Menu">
+          <img src="images/menu.svg" alt="Menu" />
+        </a>
+        <h1 class="site-title site-title-mobile">The Daily News</h1>
+      </div>
+
+      <hr class="rule" />
+    </header>
+
+    <main class="content" aria-label="Top stories">
+      <!-- LEFT column -->
+      <section class="lead-column">
+        <article class="story story-lead">
+          <img src="images/story1.png" alt="Story 1 placeholder image" />
+          <h2>Canada’s Conservative leader echoes Reagan as his party regroups</h2>
+          <p class="body desktop-only">CALGARY, Alberta — Canada’s Conservative leader channeled a legendary American
+            president as he secured his hold on the party grassroots — and and debuted his new message to voters for a
+            federal election that could come as early as spring.
+
+            Pierre Poilievre is rebuilding after last year’s election defeat, losing to Mark Carney, a rookie Liberal
+            politician who leapfrogged and stunned the once-favored Conservatives.
+
+            Before the Liberal comeback, the Conservatives seemed set to ride a wave of anti-incumbent sentiment
+            sweeping much of the Western world.</p>
+          <p class="body tablet-mobile-only">A year out from a bruising loss to Mark Carney, the opposition leader is
+            betting the next election on a simple test: are voters better off?</p>
+        </article>
+
+        <article class="story story-lead">
+          <img src="images/story2.png" alt="Story 2 placeholder image" />
+          <h2>This Tire Brand Scores The Worst For Owner Satisfaction In Consumer Reports' Ranking</h2>
+          <p class="body desktop-only">As the only part of the car that's actually supposed to make contact with the
+            road, tires are crucial for keeping your car safe and performing well. But, like anything else in the world
+            of cars, they're not all built equal. That fact is evident when seeing how certain manufacturers failed to
+            perform to standard in a recent Consumer Reports (CR) study on tire brand satisfaction.
+
+            The study considered all-season, all-terrain, winter/snow, and summer tires. Of the brands surveyed,
+            Sumitomo ended up with the lowest overall satisfaction levels, finishing at the bottom of the table in two
+            of the four tire categories (all-terrain and summer). It also languished as second-to-last in the all-season
+            and winter/snow categories.
+
+            Sumitomo tires performed more poorly than others in key priority areas for consumers, such as handling
+            capabilities, grip on wet roads, and longevity. Their tires were found to wear more quickly on
+            average, compromising a car's ability to grip the road effectively. All four Sumitomo tires rated by CR –
+            namely the HTR A/S P03 (all-season tire), HTR Z5 (summer tire), Ice Edge (winter), and Encounter HT2
+            (all-season SUV tires) — scored poorly across the board, receiving some of the lowest ratings possible for
+            owner satisfaction.</p>
+          <p class="body tablet-mobile-only">There are more named brands among the worst performers in Consumer Reports'
+            recent owner satisfaction survey</p>
+        </article>
+      </section>
+
+      <!-- RIGHT column -->
+      <section class="side-grid" aria-label="More stories">
+        <article class="story story-small show-on-desktop show-on-tablet">
+          <img src="images/story3.png" alt="Story 3 placeholder image" />
+          <h3>A practice known as ‘house burping’ is gaining traction online. What is it?</h3>
+          <p class="body desktop-only">The German trend of “lüften” involves opening the windows of your home a few
+            times a day, in order to air it out, regardless of the temperature outside.
+            While it may seem like an unremarkable practice, “lüften,” or “house burping” – as it’s referred to in the
+            U.S. – is gaining popularity on social media and trending online.</p>
+          <p class="body tablet-mobile-only">The German trend of “lüften” involves opening the windows of your home a
+            few times a day, in order to air it out, regardless of the temperature outside.</p>
+        </article>
+
+        <article class="story story-small show-on-desktop show-on-tablet">
+          <img src="images/story4.png" alt="Story 4 placeholder image" />
+          <h3>Leafs’ Rielly exits against Canucks with upper-body injury</h3>
+          <p class="body desktop-only">Toronto Maple Leafs defenceman Morgan Rielly exited Saturday’s 3-2 shootout win
+            over the Vancouver Canucks with an upper-body injury.
+            The 31-year-old blueliner was ruled out for the remainder of the contest prior to the start of the third
+            period.</p>
+          <p class="body tablet-mobile-only">Toronto Maple Leafs defenceman Morgan Rielly exited Saturday’s 3-2 shootout
+            win over the Vancouver Canucks with an upper-body injury.</p>
+        </article>
+
+        <article class="story story-small show-on-desktop show-on-tablet">
+          <img src="images/story5.png" alt="Story 5 placeholder image" />
+          <h3>Red carpet highlights from the 2026 Grammy Awards</h3>
+          <p class="body desktop-only">The 68th Grammy Awards, taking place at Crypto.com Arena in Los Angeles and
+            hosted again by Trevor Noah, is sure to bring plenty of exciting live performances and appearances —
+            including on the red carpet. </p>
+          <p class="body tablet-mobile-only">All the must-see looks from music’s biggest night</p>
+        </article>
+
+        <article class="story story-small desktop-only">
+          <img src="images/story6.png" alt="Story 6 placeholder image" />
+          <h3>Race to export beyond U.S. picks up as tariff squeeze grips Canada</h3>
+          <p class="body">It was a rough week for the Canadian economy.
+            General Motors laid off 500 workers at a plant in Oshawa, Ont. New threats from the White House targeted
+            Canada’s aerospace industry. And Statistics Canada announced its preliminary estimates show gross domestic
+            product contracted in the fourth quarter of last year.</p>
+        </article>
+
+        <article class="story story-small desktop-only">
+          <img src="images/story7.png" alt="Story 7 placeholder image" />
+          <h3>FIRST Robotics Competition reveals 2026 game REBUILT</h3>
+          <p class="body">Kicking off the 2026 FRC build season, the game REBUILT was revealed. REBUILT is a high
+            capacity shooter game where opposing alliances race to score FUEL in their respective alliance HUB. The game
+            also features a challenging endgame climb where robots must ascend over 6 feet!</p>
+        </article>
+
+        <article class="story story-small desktop-only">
+          <img src="images/story8.png" alt="Story 8 placeholder image" />
+          <h3>McMaster Concert Band prepares for their upcoming video game concert</h3>
+          <p class="body">It's that time of year where the McMaster Concert Band gears up for their annual PLAY:
+            Symphonic Video Game Concert. Featuring music from popular video games, this concert has been a crowd
+            favourite for the last few years, selling out two full concerts.</p>
+        </article>
+      </section>
+
+      <!-- Mobile-only -->
+      <section class="mobile-stack" aria-label="More stories (mobile)">
+
+        <article class="story mobile-only">
+          <img src="images/story3.png" alt="Story 3 placeholder image" />
+          <h2>A practice known as ‘house burping’ is gaining traction online. What is it?</h2>
+          <p class="body">
+            The German trend of “lüften” involves opening the windows of your home a few
+            times a day, in order to air it out, regardless of the temperature outside.
+          </p>
+        </article>
+
+        <article class="story mobile-only">
+          <img src="images/story4.png" alt="Story 4 placeholder image" />
+          <h2>Leafs’ Rielly exits against Canucks with upper-body injury</h2>
+          <p class="body">
+            Toronto Maple Leafs defenceman Morgan Rielly exited Saturday’s 3-2 shootout win
+            over the Vancouver Canucks with an upper-body injury.
+          </p>
+        </article>
+
+        <article class="story mobile-only">
+          <img src="images/story5.png" alt="Story 5 placeholder image" />
+          <h2>Red carpet highlights from the 2026 Grammy Awards</h2>
+          <p class="body">
+            The 68th Grammy Awards, taking place at Crypto.com Arena in Los Angeles and hosted
+            again by Trevor Noah, is sure to bring plenty of exciting live performances and
+            appearances — including on the red carpet.
+          </p>
+        </article>
+
+      </section>
+
+    </main>
+
+    <footer class="site-footer" aria-label="Footer links">
+      <div class="footer-col">
+        <h4>Subscribe</h4>
+        <a href="https://example.com">Digital Access</a>
+        <a href="https://example.com">Home Delivery</a>
+        <a href="https://example.com">Gift Subscriptions</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Account</h4>
+        <a href="https://example.com">Log In</a>
+        <a href="https://example.com">Manage</a>
+        <a href="https://example.com">Delivery</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="https://example.com">Tip Hotline</a>
+        <a href="https://example.com">Help &amp; FAQs</a>
+        <a href="https://example.com">Advertising</a>
+      </div>
+    </footer>
+
+    <div class="footer-rule" aria-hidden="true"></div>
+  </div>
+</body>
+
+</html>
