@@ -336,8 +336,8 @@ a {
 
   .page {
     border-color: rgba(255, 255, 255, 0.12);
-    background: #0f1620;
-    color: #e8eef6;
+    background: #81b6ff;
+    color: #000000;
   }
 
   .site-header {
@@ -415,7 +415,7 @@ a {
   }
 
   .footer-col a {
-    color: #e8eef6;
+    color: #585858;
     opacity: 0.9;
   }
 }
