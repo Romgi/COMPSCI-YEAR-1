@@ -7,10 +7,7 @@ const doIt = document.getElementById("doIt");
 function calculate() {
     const a = parseFloat(num1.value);
     const b = parseFloat(num2.value);
-    if (Number.isNaN(a) || Number.isNaN(b)) {
-        result.value = "";
-        return;
-    }
+
     let value;
     switch (operation.value) {
         case "+": value = a + b; break;
@@ -23,7 +20,6 @@ function calculate() {
     result.value = value;
 }
 
-doIt.addEventListener("click", calculate);
 [num1, num2, operation].forEach((el) => {
     el.addEventListener("input", calculate);
     el.addEventListener("change", calculate);
