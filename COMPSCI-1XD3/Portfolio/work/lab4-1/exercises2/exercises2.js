@@ -12,9 +12,6 @@ for (let i = 0; i < 100; i++) {
     balls.push(new LotteryBall());
 }
 
-// Show first ball created
-alert(`First ball created:\nColor: ${balls[0].color}\nPoints: ${balls[0].points}`);
-
 // Game logic
 let score = 0;
 const drawnBalls = new Set();
