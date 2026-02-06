@@ -96,10 +96,27 @@ top: 0px and left: 0px puts it in the top left corner of the "container" div.
 
             applyPosition(nextX, nextY);
         }
+
+        function initControls() {
+            const randomBtn = document.getElementById("move-random");
+            const promptBtn = document.getElementById("move-prompt");
+            if (randomBtn) {
+                randomBtn.addEventListener("click", moveRandomConfirm);
+            }
+            if (promptBtn) {
+                promptBtn.addEventListener("click", moveByPrompt);
+            }
+        }
+
+        window.addEventListener("DOMContentLoaded", initControls);
     </script>
 </head>
 
 <body>
+    <div>
+        <button id="move-random" type="button">Move Random</button>
+        <button id="move-prompt" type="button">Move with Prompt</button>
+    </div>
     <div id="container">
         <div id='moveme'></div>
     </div>
