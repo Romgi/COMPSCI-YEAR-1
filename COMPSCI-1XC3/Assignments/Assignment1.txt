@@ -6,7 +6,7 @@ tar -cvjf my.tar.bz2 myExam myBook
 
 alias cr='cd / && ls -l && cd -'
 
-cho "Dear $USER, the result of 'ls -l' under the current working directory is:"; ls -l
+echo "Dear $USER, the result of 'ls -l' under the current working directory is:"; ls -l
 
 find ~ -type f \( -name '1xc3.out' -o -name '1xc3.exe' \) -exec mv -t ../myExeDir {} +
 
