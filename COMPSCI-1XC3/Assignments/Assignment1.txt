@@ -1,0 +1,19 @@
+find ~ -type f -printf '%T@ %p\n' | sort -n | head -n 10 | cut -d' ' -f2- | xargs -d '\n' ls -l
+
+sed -n '2,3p' example.txt
+
+tar -cvjf my.tar.bz2 myExam myBook
+
+alias cr='cd / && ls -l && cd -'
+
+cho "Dear $USER, the result of 'ls -l' under the current working directory is:"; ls -l
+
+find ~ -type f \( -name '1xc3.out' -o -name '1xc3.exe' \) -exec mv -t ../myExeDir {} +
+
+find ~ -type f \( \( -name '*.txt' -size -1k \) -o \( -name '*.png' -size +5M \) \) > howcome.txt
+
+find . -type d -exec chmod 700 {} +
+
+sed 's/f..k/nice/g' story.txt
+
+grep -E '(COMPSCI|SFWRENG)([ -])[1-4][A-Z]{2}[1-9]' MacCourses.txt
