@@ -1,0 +1,110 @@
+<!doctype html>
+<!--
+Some starter code for the lecture on processing input elements
+Sam Scott, McMaster 2025.
+-->
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Input Examples</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        #form {
+            background-color: lightblue;
+            border-radius: 20px;
+            max-width: 500px;
+            padding: 20px;
+            margin: auto;
+            margin-top:10px;
+        }
+
+        input, #form p {
+            /* styles all input elements at once */
+            display: block;
+            width: 100%;
+            padding: 10px;
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        #form h1 {
+            margin-bottom: 10px;
+        }
+    </style>
+    <script>
+        window.addEventListener("load", function (event) {
+            // Retrieve important DOM elements
+            const guess = document.getElementById("guess");
+            const guessbutton = document.getElementById("guessbutton");
+            const hint = document.getElementById("hint");
+
+            let mynum = Math.floor(Math.random()*100)+1
+            mynum = 50;
+            let gameOver = false;
+
+            /**
+             * constrains user by enabling/disabling guess button
+             * @param {object} Event
+             **/
+            guess.addEventListener("input", function (event) {
+                if (this.value === "" || isNaN(this.value)) {
+                    guessbutton.disabled = true;
+                } else {
+                    guessbutton.disabled = false;
+                }
+            })
+
+            guess.addEventListener("keydown", function(event) {
+                console.log(event.keyCode);
+                if (event.keyCode === 13) {
+                    guessbutton.click();
+                }
+            });
+            /**
+             * Your Turn this into a guessing game with
+             * higher/lower hints.
+             **/
+            guessbutton.addEventListener("click", function (event) {
+                console.log("button clicked");
+                if (gameOver) {
+                    mynum = Math.floor(Math.random()*100)+1;
+                    this.value = "guess";
+                    guess.value="";
+                    guess.disabled = false;
+                    gameOver = false;
+                    return;
+                } 
+                let g = parseInt(guess.value);
+                if (g < mynum) {
+                    hint.innerHTML = "Too Low";
+                } else if (g > mynum) {
+                    hint.innerHTML = "Too High";
+                } else {
+                    hint.innerHTML = "Correct!!!";
+                    guess.disabled = true;
+                    gameOver = true;
+                    this.value="Play Again";
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div id="form">
+        <h1>Guess a Number (1-100)!</h1>
+        <input id="guess" type="number">
+        <input id="guessbutton" type="button" value="guess" disabled>
+        <p id="hint"></p>
+    </div>
+</body>
+
+</html>
