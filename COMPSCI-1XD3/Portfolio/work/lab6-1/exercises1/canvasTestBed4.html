@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Canvas Test Bed</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <style type="text/css">
+        #testCanvas {
+            background-color: #0b0f2e;
+            margin: 30px;
+        }
+        body {
+            text-align: center;
+            color: #e6e6f0;
+            background-color: #1b2238;
+        }
+    </style>
+    <script>
+        window.addEventListener("load", function () {
+            const canvas = document.getElementById("testCanvas");
+            const ctx = canvas.getContext("2d");
+
+            const buttons = document.querySelectorAll('input[type="button"]');
+            const btn1 = buttons[0];
+            const btn2 = buttons[1];
+            const btn3 = buttons[2];
+            const btn4 = buttons[3];
+
+            const houseBaseY = 300;
+            const houseWidth = 70;
+            const houseHeight = 50;
+            const roofHeight = 30;
+            const houseSpacing = 20;
+
+            let nextHouseX = 20;
+            let lastHouseX = null;
+
+            function drawGround() {
+                ctx.strokeStyle = "#cfd3ff";
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(0, houseBaseY + 20);
+                ctx.lineTo(canvas.width, houseBaseY + 20);
+                ctx.stroke();
+            }
+
+            function drawHouse(x) {
+                ctx.strokeStyle = "#ffffff";
+                ctx.lineWidth = 2;
+
+                ctx.beginPath();
+                ctx.rect(x, houseBaseY - houseHeight, houseWidth, houseHeight);
+                ctx.moveTo(x, houseBaseY - houseHeight);
+                ctx.lineTo(x + houseWidth / 2, houseBaseY - houseHeight - roofHeight);
+                ctx.lineTo(x + houseWidth, houseBaseY - houseHeight);
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.rect(x + houseWidth * 0.4, houseBaseY - 20, houseWidth * 0.2, 20);
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.rect(x + houseWidth * 0.15, houseBaseY - houseHeight + 12, 12, 12);
+                ctx.stroke();
+            }
+
+            function drawCar(x) {
+                const carY = houseBaseY + 20;
+                const carWidth = 60;
+                const carHeight = 20;
+                const carX = x + (houseWidth - carWidth) / 2;
+
+                ctx.strokeStyle = "#ffffff";
+                ctx.lineWidth = 2;
+
+                ctx.beginPath();
+                ctx.rect(carX, carY - carHeight, carWidth, carHeight);
+                ctx.moveTo(carX + 10, carY - carHeight);
+                ctx.lineTo(carX + 20, carY - carHeight - 10);
+                ctx.lineTo(carX + 40, carY - carHeight - 10);
+                ctx.lineTo(carX + 50, carY - carHeight);
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.arc(carX + 15, carY, 5, 0, Math.PI * 2);
+                ctx.arc(carX + 45, carY, 5, 0, Math.PI * 2);
+                ctx.stroke();
+            }
+
+            function drawStar(x, y, color) {
+                const r = 6;
+                ctx.strokeStyle = color;
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(x, y - r);
+                ctx.lineTo(x + r * 0.6, y + r);
+                ctx.lineTo(x - r, y - r * 0.2);
+                ctx.lineTo(x + r, y - r * 0.2);
+                ctx.lineTo(x - r * 0.6, y + r);
+                ctx.closePath();
+                ctx.stroke();
+            }
+
+            function randomColor() {
+                const r = Math.floor(120 + Math.random() * 135);
+                const g = Math.floor(120 + Math.random() * 135);
+                const b = Math.floor(120 + Math.random() * 135);
+                return `rgb(${r}, ${g}, ${b})`;
+            }
+
+            function initScene() {
+                ctx.fillStyle = "#0b0f2e";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                drawGround();
+                nextHouseX = 20;
+                lastHouseX = null;
+            }
+
+            btn2.addEventListener("click", function () {
+                drawHouse(nextHouseX);
+                lastHouseX = nextHouseX;
+                nextHouseX += houseWidth + houseSpacing;
+            });
+
+            btn3.addEventListener("click", function () {
+                if (lastHouseX !== null) {
+                    drawCar(lastHouseX);
+                }
+            });
+
+            btn4.addEventListener("click", function () {
+                drawStar(20, 20, "gold");
+
+                const skyMaxY = houseBaseY - houseHeight - roofHeight - 10;
+                const x = 10 + Math.random() * (canvas.width - 20);
+                const y = 10 + Math.random() * (skyMaxY - 10);
+                drawStar(x, y, randomColor());
+            });
+
+            btn1.addEventListener("click", initScene);
+
+            initScene();
+        });
+    </script>
+</head>
+
+<body>
+    <h1>Canvas Test Bed 4</h1>
+    <canvas id="testCanvas" width="400" height="400"></canvas>
+    <br>
+    <input type="button" value="Button 1">
+    <input type="button" value="Button 2">
+    <input type="button" value="Button 3">
+    <input type="button" value="Button 4">
+</body>
+
+</html>
