@@ -28,68 +28,82 @@
             const btn4 = buttons[3];
 
             const houseBaseY = 300;
-            const houseWidth = 70;
-            const houseHeight = 50;
-            const roofHeight = 30;
+            const groundY = houseBaseY + 35;
+            const houseWidth = 60;
+            const houseHeight = 40;
+            const roofHeight = 25;
             const houseSpacing = 20;
 
             let nextHouseX = 20;
             let lastHouseX = null;
 
-            function drawGround() {
+            function drawNightBackground() {
+                ctx.fillStyle = "#0b0f2e";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
                 ctx.strokeStyle = "#cfd3ff";
                 ctx.lineWidth = 2;
                 ctx.beginPath();
-                ctx.moveTo(0, houseBaseY + 20);
-                ctx.lineTo(canvas.width, houseBaseY + 20);
+                ctx.moveTo(0, groundY);
+                ctx.lineTo(canvas.width, groundY);
                 ctx.stroke();
+            }
+
+            function drawCheckerboard() {
+                const size = canvas.width / 8;
+                for (let row = 0; row < 8; row++) {
+                    for (let col = 0; col < 8; col++) {
+                        ctx.fillStyle = (row + col) % 2 === 0
+                            ? "rgba(255, 255, 255, 0.5)"
+                            : "rgba(80, 90, 120, 0.4)";
+                        ctx.fillRect(col * size, row * size, size, size);
+                    }
+                }
             }
 
             function drawHouse(x) {
                 ctx.strokeStyle = "#ffffff";
                 ctx.lineWidth = 2;
 
+                ctx.strokeRect(x, houseBaseY - houseHeight, houseWidth, houseHeight);
+
                 ctx.beginPath();
-                ctx.rect(x, houseBaseY - houseHeight, houseWidth, houseHeight);
                 ctx.moveTo(x, houseBaseY - houseHeight);
                 ctx.lineTo(x + houseWidth / 2, houseBaseY - houseHeight - roofHeight);
                 ctx.lineTo(x + houseWidth, houseBaseY - houseHeight);
                 ctx.stroke();
 
-                ctx.beginPath();
-                ctx.rect(x + houseWidth * 0.4, houseBaseY - 20, houseWidth * 0.2, 20);
-                ctx.stroke();
-
-                ctx.beginPath();
-                ctx.rect(x + houseWidth * 0.15, houseBaseY - houseHeight + 12, 12, 12);
-                ctx.stroke();
+                ctx.strokeRect(x + houseWidth * 0.4, houseBaseY - 20, houseWidth * 0.2, 20);
             }
 
             function drawCar(x) {
-                const carY = houseBaseY + 20;
-                const carWidth = 60;
-                const carHeight = 20;
+                if (x === null) {
+                    return;
+                }
+
+                const carY = groundY;
+                const carWidth = 50;
+                const carHeight = 18;
                 const carX = x + (houseWidth - carWidth) / 2;
 
                 ctx.strokeStyle = "#ffffff";
                 ctx.lineWidth = 2;
 
+                ctx.strokeRect(carX, carY - carHeight, carWidth, carHeight);
                 ctx.beginPath();
-                ctx.rect(carX, carY - carHeight, carWidth, carHeight);
-                ctx.moveTo(carX + 10, carY - carHeight);
-                ctx.lineTo(carX + 20, carY - carHeight - 10);
-                ctx.lineTo(carX + 40, carY - carHeight - 10);
-                ctx.lineTo(carX + 50, carY - carHeight);
+                ctx.moveTo(carX + 8, carY - carHeight);
+                ctx.lineTo(carX + 18, carY - carHeight - 10);
+                ctx.lineTo(carX + 34, carY - carHeight - 10);
+                ctx.lineTo(carX + 44, carY - carHeight);
                 ctx.stroke();
 
                 ctx.beginPath();
-                ctx.arc(carX + 15, carY, 5, 0, Math.PI * 2);
-                ctx.arc(carX + 45, carY, 5, 0, Math.PI * 2);
+                ctx.arc(carX + 12, carY, 4, 0, Math.PI * 2);
+                ctx.arc(carX + 38, carY, 4, 0, Math.PI * 2);
                 ctx.stroke();
             }
 
             function drawStar(x, y, color) {
-                const r = 6;
+                const r = 5;
                 ctx.strokeStyle = color;
                 ctx.lineWidth = 2;
                 ctx.beginPath();
@@ -109,13 +123,9 @@
                 return `rgb(${r}, ${g}, ${b})`;
             }
 
-            function initScene() {
-                ctx.fillStyle = "#0b0f2e";
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-                drawGround();
-                nextHouseX = 20;
-                lastHouseX = null;
-            }
+            btn1.addEventListener("click", function () {
+                drawCheckerboard();
+            });
 
             btn2.addEventListener("click", function () {
                 drawHouse(nextHouseX);
@@ -124,9 +134,7 @@
             });
 
             btn3.addEventListener("click", function () {
-                if (lastHouseX !== null) {
-                    drawCar(lastHouseX);
-                }
+                drawCar(lastHouseX);
             });
 
             btn4.addEventListener("click", function () {
@@ -138,9 +146,7 @@
                 drawStar(x, y, randomColor());
             });
 
-            btn1.addEventListener("click", initScene);
-
-            initScene();
+            drawNightBackground();
         });
     </script>
 </head>
