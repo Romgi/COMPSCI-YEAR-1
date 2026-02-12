@@ -1,0 +1,3 @@
+l	file1
+d	file2
+_	file3

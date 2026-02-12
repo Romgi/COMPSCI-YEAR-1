@@ -1,0 +1,3 @@
+l	-rwxr-xr-x	user	staff	1234	file1
+d	drwxr-xr-x	user	staff	4096	file2
+_	-rw-r--r--	user	staff	512	file3
