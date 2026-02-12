@@ -1,5 +1,6 @@
 {
     "python.analysis.extraPaths": [
         "./COMPSCI-1MD3/Assignments/Assignment-0"
-    ]
+    ],
+    "C_Cpp.default.compilerPath": "C:/w64devkit/w64devkit/bin/gcc.exe"
 }
