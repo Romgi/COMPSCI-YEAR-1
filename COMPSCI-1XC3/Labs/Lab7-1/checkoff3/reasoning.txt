@@ -1,0 +1,10 @@
+Predictions before running:
+
+1) inside: 15
+2) outside: 10
+
+Reason:
+
+- The function parameter `x` in `mystery(int x)` is a local copy of the global `x`.
+- `x += 5` changes only the local parameter inside `mystery`.
+- The global `x` remains 10, so `outside` prints 10.
