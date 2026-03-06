@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<!--
+Example CSS Animation
+Sam Scott, McMaster, 2024
+-->
+<html>
+
+<head>
+    <title>Example Animation</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <script type='text/javascript'>
+        window.addEventListener("load", function (event) {
+            const canvas = document.getElementById('animationCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            const rectangles = [
+                { x: 0, y: 50, width: 80, height: 100, originalWidth: 80, direction: 1, extending: false, speed: 13, delay: 0, imageAlign: 'right' },
+                { x: canvas.width - 80, y: 150, width: 80, height: 100, originalWidth: 80, direction: -1, extending: false, speed: 13, delay: 20, imageAlign: 'left' },
+                { x: 0, y: 250, width: 80, height: 100, originalWidth: 80, direction: 1, extending: false, speed: 13, delay: 40, imageAlign: 'right' },
+                { x: canvas.width - 80, y: 350, width: 80, height: 100, originalWidth: 80, direction: -1, extending: false, speed: 13, delay: 60, imageAlign: 'left' }
+            ];
+            
+            const images = [];
+            const imageUrls = ['images/jonathan.jpg', 'images/charles.jpg', 'images/marco.png', 'images/hanzhi.jpg'];
+            const labels = ['Jonathan', 'Charles', 'Marco', 'Hanzhi'];
+            
+            let imagesLoaded = 0;
+            
+            for (let i = 0; i < imageUrls.length; i++) {
+                images[i] = new Image();
+                images[i].onload = function() {
+                    imagesLoaded++;
+                    if (imagesLoaded === imageUrls.length) {
+                        startAnimation();
+                    }
+                };
+                images[i].onerror = function() {
+                    imagesLoaded++;
+                    if (imagesLoaded === imageUrls.length) {
+                        startAnimation();
+                    }
+                };
+                images[i].src = imageUrls[i];
+            }
+            
+            setTimeout(function() {
+                if (imagesLoaded < imageUrls.length) {
+                    startAnimation();
+                }
+            }, 1000);
+            
+            let timerId;
+            let frameCount = 0;
+
+            function startAnimation() {
+                timerId = setInterval(updateAnimation, 16);
+            }
+
+            function stopAnimation() {
+                clearTimeout(timerId);
+            }
+
+            function drawRectangle(rect, index) {
+                const colors = ['#0324fc', '#030bfc', '#1703fc', '#3503fc'];
+                ctx.fillStyle = colors[index];
+                ctx.fillRect(rect.x, rect.y, rect.width, rect.height);
+                
+                const img = images[index];
+                const label = labels[index];
+                
+                if (rect.imageAlign === 'right') {
+                    const imgX = rect.x + rect.width - 100;
+                    const imgY = rect.y + (rect.height - 100) / 2;
+                    if (imgX >= rect.x && img.complete) {
+                        ctx.drawImage(img, imgX, imgY, 100, 100);
+                    }
+                    
+                    ctx.fillStyle = 'white';
+                    ctx.font = 'bold 16px Arial';
+                    ctx.textAlign = 'right';
+                    const textX = imgX - 10;
+                    const textY = rect.y + rect.height / 2 + 5;
+                    if (textX > rect.x) {
+                        ctx.fillText(label, textX, textY);
+                    }
+                } else {
+                    const imgX = rect.x;
+                    const imgY = rect.y + (rect.height - 100) / 2;
+                    if (imgX + 100 <= rect.x + rect.width && img.complete) {
+                        ctx.drawImage(img, imgX, imgY, 100, 100);
+                    }
+                    
+                    ctx.fillStyle = 'white';
+                    ctx.font = 'bold 16px Arial';
+                    ctx.textAlign = 'left';
+                    const textX = imgX + 100 + 10;
+                    const textY = rect.y + rect.height / 2 + 5;
+                    if (textX < rect.x + rect.width) {
+                        ctx.fillText(label, textX, textY);
+                    }
+                }
+            }
+
+            function updateAnimation() {
+                frameCount++;
+                
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                const middle = canvas.width / 2;
+                
+                for (let i = 0; i < rectangles.length; i++) {
+                    const rect = rectangles[i];
+                    
+                    if (frameCount >= rect.delay && !rect.extending && rect.speed > 0) {
+                        rect.extending = true;
+                    }
+                    
+                    if (rect.extending && rect.speed > 0) {
+                        rect.width += rect.speed;
+                        
+                        if (rect.direction === -1) {
+                            rect.x -= rect.speed;
+                        }
+                        
+                        if ((rect.direction === 1 && rect.x + rect.width >= middle + 200) || 
+                            (rect.direction === -1 && rect.x <= middle - 200)) {
+                            rect.extending = false;
+                        } else {
+                            rect.speed -= 0.12;
+                            if (rect.speed <= 0) {
+                                rect.speed = 0;
+                                rect.extending = false;
+                            }
+                        }
+                    }
+                    
+                    drawRectangle(rect, i);
+                }
+            }
+        });
+    </script>
+    <style>
+        #animationCanvas {
+            border: 1px solid #000;
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+
+<body style='text-align:center;'>
+    <canvas id="animationCanvas" width="1200" height="600"></canvas>
+</body>
+
+</html>
