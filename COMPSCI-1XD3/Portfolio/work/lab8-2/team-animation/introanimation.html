@@ -22,10 +22,11 @@ Sam Scott, McMaster, 2024
             ];
             
             const images = [];
-            const imageUrls = ['images/jonathan.jpg', 'images/charles.jpg', 'images/marco.png', 'images/hanzhi.jpg'];
+            const imageUrls = ['images/jonathan.jpg', 'images/charles.JPG', 'images/marco.png', 'images/hanzhi.jpg'];
             const labels = ['Jonathan', 'Charles', 'Marco', 'Hanzhi'];
             
             let imagesLoaded = 0;
+            let animationStarted = false;
             
             for (let i = 0; i < imageUrls.length; i++) {
                 images[i] = new Image();
@@ -54,11 +55,15 @@ Sam Scott, McMaster, 2024
             let frameCount = 0;
 
             function startAnimation() {
+                if (animationStarted) {
+                    return;
+                }
+                animationStarted = true;
                 timerId = setInterval(updateAnimation, 16);
             }
 
             function stopAnimation() {
-                clearTimeout(timerId);
+                clearInterval(timerId);
             }
 
             function drawRectangle(rect, index) {
