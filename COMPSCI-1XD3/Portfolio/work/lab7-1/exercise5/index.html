@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lab 7.1 Exercise 5</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        main {
+            max-width: 860px;
+            margin: 0 auto;
+        }
+
+        canvas {
+            background: #01070d;
+            border: 2px solid #49677f;
+            border-radius: 8px;
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <h1>Exercise 5: Ball Array</h1>
+        <p>500 balls start from a 100x100 center area with random speeds from -5 to 5.</p>
+        <canvas id="animationCanvas" width="768" height="400"></canvas>
+        <div class="controls">
+            <button id="startBtn" type="button">Start</button>
+            <button id="resetBtn" type="button">Reset</button>
+        </div>
+        <div id="status"></div>
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>
