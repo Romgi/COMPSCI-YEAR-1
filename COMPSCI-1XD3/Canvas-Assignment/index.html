@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Memory Match is a simple mobile-friendly memory game built for the 1XD3 canvas assignment.">
+    <title>Memory Match</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/app.js" defer></script>
+</head>
+<body>
+    <main class="app-shell">
+        <section id="splash-screen" class="screen">
+            <div class="card splash-card">
+                <p class="eyebrow">Canvas Assignment</p>
+                <canvas id="splash-canvas" width="320" height="180" aria-hidden="true"></canvas>
+                <h1>Memory Match</h1>
+                <p class="lead-copy">
+                    Watch the pattern on the four buttons, then repeat it in the same order.
+                </p>
+                <button id="splash-start" class="action-button action-button--primary" type="button" disabled>
+                    Start Game
+                </button>
+            </div>
+        </section>
+
+        <section id="game-screen" class="screen" hidden>
+            <header class="card game-header">
+                <div>
+                    <p class="eyebrow">Memory Game</p>
+                    <h2>Repeat the pattern</h2>
+                </div>
+                <div class="control-row">
+                    <button id="help-button" class="action-button action-button--secondary" type="button">
+                        Help
+                    </button>
+                    <button id="restart-button" class="action-button action-button--ghost" type="button">
+                        Restart
+                    </button>
+                </div>
+            </header>
+
+            <section class="card status-card">
+                <div class="status-topline">
+                    <p id="status-text" class="status-text" aria-live="polite">
+                        Watch the pattern.
+                    </p>
+                    <p class="status-caption">Complete 5 rounds to win.</p>
+                </div>
+
+                <div class="progress-track" aria-hidden="true">
+                    <div id="progress-fill" class="progress-fill"></div>
+                </div>
+
+                <div class="stat-grid">
+                    <article class="stat-chip">
+                        <span class="stat-label">Round</span>
+                        <span id="round-value" class="stat-value">1 / 5</span>
+                    </article>
+                    <article class="stat-chip">
+                        <span class="stat-label">Score</span>
+                        <span id="score-value" class="stat-value">0</span>
+                    </article>
+                    <article class="stat-chip">
+                        <span class="stat-label">Best</span>
+                        <span id="best-value" class="stat-value">0</span>
+                    </article>
+                </div>
+            </section>
+
+            <section id="help-panel" class="card help-panel" hidden>
+                <h3>How to play</h3>
+                <p>
+                    The buttons light up in a pattern. When the pattern finishes, tap the same buttons in the same order.
+                    Each round adds one more step. If you tap the wrong button, the game ends and your score is saved.
+                </p>
+            </section>
+
+            <section class="card board-card">
+                <div class="board-header">
+                    <h3>Game Board</h3>
+                    <p>Tap after the pattern stops.</p>
+                </div>
+
+                <div class="pad-grid">
+                    <button class="memory-pad memory-pad--red" type="button" data-pad="0" disabled>
+                        <span class="pad-name">Red</span>
+                        <span class="pad-hint">Button 1</span>
+                    </button>
+                    <button class="memory-pad memory-pad--blue" type="button" data-pad="1" disabled>
+                        <span class="pad-name">Blue</span>
+                        <span class="pad-hint">Button 2</span>
+                    </button>
+                    <button class="memory-pad memory-pad--yellow" type="button" data-pad="2" disabled>
+                        <span class="pad-name">Yellow</span>
+                        <span class="pad-hint">Button 3</span>
+                    </button>
+                    <button class="memory-pad memory-pad--green" type="button" data-pad="3" disabled>
+                        <span class="pad-name">Green</span>
+                        <span class="pad-hint">Button 4</span>
+                    </button>
+                </div>
+            </section>
+        </section>
+
+        <section id="results-screen" class="screen" hidden>
+            <section class="card results-card">
+                <p class="eyebrow">Game Over</p>
+                <h2 id="result-heading">Result</h2>
+                <p id="result-message" class="lead-copy"></p>
+
+                <div class="results-grid">
+                    <article class="summary-chip">
+                        <span class="stat-label">Score</span>
+                        <span id="result-score" class="stat-value">0</span>
+                    </article>
+                    <article class="summary-chip">
+                        <span class="stat-label">Rounds Cleared</span>
+                        <span id="result-rounds" class="stat-value">0 / 5</span>
+                    </article>
+                    <article class="summary-chip">
+                        <span class="stat-label">High Score</span>
+                        <span id="result-high-score" class="stat-value">0</span>
+                    </article>
+                </div>
+
+                <div class="history-block">
+                    <div class="board-header">
+                        <h3>Recent History</h3>
+                        <p>Stored in local storage on this browser.</p>
+                    </div>
+                    <ul id="history-list" class="history-list"></ul>
+                </div>
+
+                <button id="play-again-button" class="action-button action-button--primary" type="button">
+                    Play Again
+                </button>
+            </section>
+        </section>
+    </main>
+</body>
+</html>
