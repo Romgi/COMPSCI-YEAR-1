@@ -1,4 +1,9 @@
-/* Simple mobile-first styling for the canvas assignment memory game. */
+/*
+    Name: Jonathan Graydon
+    Created: 2026-03-16
+    Description: CSS styling for the Memory Match canvas assignment app. This file provides the
+    mobile-first layout, button styles, game board colours, and results/history presentation.
+*/
 
 :root {
     --page-bg: #eef3f7;
