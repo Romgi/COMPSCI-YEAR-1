@@ -1,7 +1,7 @@
 /* Simple memory game for the canvas assignment. */
 
 window.addEventListener("load", () => {
-    const TOTAL_ROUNDS = 5;
+    const TOTAL_ROUNDS = 10;
     const HISTORY_LIMIT = 5;
 
     class MemoryGame {
@@ -262,7 +262,7 @@ window.addEventListener("load", () => {
         renderResults(game, didWin, history, highScore) {
             this.elements.resultHeading.textContent = didWin ? "You won" : "You lost";
             this.elements.resultMessage.textContent = didWin
-                ? "You completed all 5 rounds."
+                ? `You completed all ${game.totalRounds} rounds.`
                 : "You tapped the wrong button before the pattern was complete.";
             this.elements.resultScore.textContent = String(game.score);
             this.elements.resultRounds.textContent = `${game.roundsCleared} / ${game.totalRounds}`;
