@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Include this to connect. Change the dbname to match your database,
  * and make sure your login information is correct after you upload 
@@ -8,9 +9,9 @@
  */
 try {
     $dbh = new PDO(
-        "mysql:host=localhost;dbname=test",
-        "root",
-        ""
+        "mysql:host=localhost;dbname=graydj1_db",
+        "graydj1_local",
+        ")wt_xR:e"
     );
 } catch (Exception $e) {
     die("ERROR: Couldn't connect. {$e->getMessage()}");
