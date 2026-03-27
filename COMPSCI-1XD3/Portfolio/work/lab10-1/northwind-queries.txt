@@ -1,0 +1,93 @@
+-- Jonathan Graydon
+-- McMaster University Computer Science 1XD3
+-- Lab 10.1 Northwind SQL Coding Practice
+
+-- SELECT
+
+-- View the entire orderdetails table
+SELECT * FROM `orderdetails`;
+
+-- Select all columns in the orderdetails table for OrderID 10281
+SELECT *
+FROM `orderdetails`
+WHERE `OrderID` = 10281;
+
+-- Retrieve just the product ids for all large orders (quantity > 90) sorted in descending order
+SELECT `ProductID`
+FROM `orderdetails`
+WHERE `Quantity` > 90
+ORDER BY `ProductID` DESC;
+
+-- Retrieve just the product id for the single largest order (without using its OrderID)
+SELECT `ProductID`
+FROM `orderdetails`
+ORDER BY `Quantity` DESC
+LIMIT 1;
+
+-- INSERT
+
+-- Add an employee named Amy Smith to the employees table
+INSERT INTO `employees` (`LastName`, `FirstName`, `BirthDate`, `Notes`)
+VALUES (
+    'Smith',
+    'Amy',
+    '1969-11-02 00:00:00',
+    'Amy has a B.A. in Basket Weaving from University of South Southwestern Ontario.'
+);
+
+-- Check that Amy Smith was inserted correctly
+SELECT *
+FROM `employees`
+WHERE `FirstName` = 'Amy' AND `LastName` = 'Smith';
+
+-- UPDATE
+
+-- Get the ID of the supplier named Bigfoot Breweries
+SELECT `SupplierID`
+FROM `suppliers`
+WHERE `SupplierName` = 'Bigfoot Breweries';
+
+-- Use that ID to update the contact name and phone number
+UPDATE `suppliers`
+SET `ContactName` = 'Mary Shelley',
+    `Phone` = '(503) 555-4242'
+WHERE `SupplierID` = 16;
+
+-- Check the supplier record after the update
+SELECT *
+FROM `suppliers`
+WHERE `SupplierID` = 16;
+
+-- Add 10 to the Quantity field of every order in orderdetails
+UPDATE `orderdetails`
+SET `Quantity` = `Quantity` + 10;
+
+-- Apply a 50% discount to every product that costs more than $10
+UPDATE `products`
+SET `Price` = `Price` * 0.5
+WHERE `Price` > 10;
+
+-- DELETE
+
+-- Find the low priced products ($10 or less)
+SELECT `ProductID`, `ProductName`, `Price`
+FROM `products`
+WHERE `Price` <= 10
+ORDER BY `Price`, `ProductID`;
+
+-- If phpMyAdmin blocks the delete because of foreign key constraints, disable checks temporarily
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- Delete all products priced at $10 or less
+DELETE FROM `products`
+WHERE `Price` <= 10;
+
+-- Turn foreign key checks back on
+SET FOREIGN_KEY_CHECKS = 1;
+
+-- Boundary check:
+-- In this northwind.sql dataset, there are no $11 products, so $12 is the lowest price that should remain.
+SELECT `ProductID`, `ProductName`, `Price`
+FROM `products`
+WHERE `Price` <= 10 OR `Price` = 12
+ORDER BY `Price`, `ProductID`;
