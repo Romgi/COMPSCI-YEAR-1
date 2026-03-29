@@ -107,6 +107,29 @@ void writeOutputTo(char *fileName)
 
 void cleanup()
 {
+  int i, j;
+
+  for (i = 0; i < numStudents; i++)
+  {
+    free(studentNames[i]);
+
+    for (j = 0; j < 5; j++)
+    {
+      if (studentTakesCourses[i][j] != NULL)
+      {
+        free(studentTakesCourses[i][j]);
+      }
+    }
+
+    free(studentTakesCourses[i]);
+  }
+
+  for (i = 0; i < numCourses; i++)
+  {
+    free(courseIDs[i]);
+    free(courseNames[i]);
+    free(courseTakenByStudents[i]);
+  }
 }
 
 int main(int argc, char **argv)
