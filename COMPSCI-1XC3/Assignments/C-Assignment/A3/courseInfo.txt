@@ -1,0 +1,10 @@
+Course 1XC3 IntroToProgramming 4
+321 Jenny
+345 Paul
+2199 Billy
+45601 Billie
+Course 3GC3 ComputerGraphics 4
+321 Jenny
+2199 Billy
+934 Harry
+333 Didi

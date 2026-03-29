@@ -1,0 +1,14 @@
+Student 321 Jenny
+IntroToProgramming 1XC3 
+ComputerGraphics 3GC3 
+Student 345 Paul
+IntroToProgramming 1XC3 
+Student 2199 Billy
+IntroToProgramming 1XC3 
+ComputerGraphics 3GC3
+Student 45601 Billie
+IntroToProgramming 1XC3 
+Student 934 Harry
+ComputerGraphics 3GC3 
+Student 333 Didi
+ComputerGraphics 3GC3
