@@ -82,6 +82,27 @@ void readInputFrom(char *fileName)
 
 void writeOutputTo(char *fileName)
 {
+  FILE *outFile = fopen(fileName, "w");
+  int i, j, k;
+
+  for (i = 0; i < numCourses; i++)
+  {
+    fprintf(outFile, "Course %s %s %d\n", courseIDs[i], courseNames[i], courseEnrollment[i]);
+
+    for (j = 0; j < courseEnrollment[i]; j++)
+    {
+      for (k = 0; k < numStudents; k++)
+      {
+        if (studentIDs[k] == courseTakenByStudents[i][j])
+        {
+          fprintf(outFile, "%d %s\n", studentIDs[k], studentNames[k]);
+          break;
+        }
+      }
+    }
+  }
+
+  fclose(outFile);
 }
 
 void cleanup()
