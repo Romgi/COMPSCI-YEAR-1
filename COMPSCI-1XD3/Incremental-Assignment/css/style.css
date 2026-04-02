@@ -1,0 +1,352 @@
+/*
+    Names: Charles Chen and Jonathan Graydon
+    Date Modified: Feb 27, 2026
+    File Description: Defines the visual theme, responsive layout, and interactive component styling.
+*/
+
+:root {
+    --bg-ink: #0a0c12;
+    --bg-stage: #131723;
+    --card: rgba(15, 19, 30, 0.9);
+    --card-edge: #3b455f;
+    --text-main: #f3ecd8;
+    --text-dim: #c7bea4;
+    --accent-brass: #d8a74e;
+    --accent-copper: #d66b32;
+    --accent-red: #a31f24;
+    --accent-green: #2f9963;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    padding: 20px;
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    color: var(--text-main);
+    background:
+        radial-gradient(circle at 15% 10%, rgba(214, 107, 50, 0.22) 0%, transparent 40%),
+        radial-gradient(circle at 80% 25%, rgba(163, 31, 36, 0.28) 0%, transparent 36%),
+        linear-gradient(160deg, var(--bg-stage), var(--bg-ink) 55%);
+}
+
+.layout {
+    max-width: 1040px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 16px;
+}
+
+.column {
+    background: var(--card);
+    border: 1px solid var(--card-edge);
+    border-radius: 14px;
+    padding: 16px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(3px);
+    animation: rise-in 380ms ease both;
+}
+
+.main-column {
+    border-color: #6f4a28;
+}
+
+.side-column {
+    border-color: #4f5876;
+}
+
+h1,
+h2,
+h3,
+p {
+    margin-top: 0;
+}
+
+h1,
+h2 {
+    font-family: "Copperplate", "Papyrus", "Times New Roman", serif;
+    letter-spacing: 1px;
+}
+
+h1 {
+    margin: 0 0 6px;
+    font-size: clamp(2rem, 6vw, 2.8rem);
+    color: #ffe9b0;
+    text-transform: uppercase;
+}
+
+h2 {
+    margin-bottom: 10px;
+    color: #ffd484;
+}
+
+.kicker {
+    margin: 0;
+    font-size: 0.72rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #f3c979;
+}
+
+.subtitle {
+    margin-bottom: 12px;
+    color: var(--text-dim);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.stat-tile {
+    margin: 0;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #3e4964;
+    background: linear-gradient(140deg, rgba(255, 255, 255, 0.02), rgba(230, 174, 84, 0.09));
+}
+
+.stat-tile-wide {
+    grid-column: 1 / -1;
+}
+
+.stat-label {
+    margin: 0 0 2px;
+    font-size: 0.76rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #e9d3a3;
+}
+
+.stat-value {
+    margin: 0;
+    font-size: 1.35rem;
+    color: #fff7df;
+}
+
+.stat-value small {
+    font-size: 0.72rem;
+    color: #dfcdab;
+}
+
+.meter-wrap {
+    margin-bottom: 14px;
+}
+
+.meter-label {
+    margin: 0 0 6px;
+    color: #e9d6ae;
+}
+
+.meter {
+    height: 16px;
+    border-radius: 999px;
+    background: rgba(11, 14, 24, 0.8);
+    border: 1px solid #4f5e82;
+    overflow: hidden;
+}
+
+.meter-fill {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #b5352b, #d66b32 55%, #f2c065);
+    box-shadow: 0 0 12px rgba(214, 107, 50, 0.5);
+    transition: width 0.18s ease-out;
+}
+
+.click-button {
+    width: 100%;
+    border: 1px solid #946747;
+    border-radius: 12px;
+    background: linear-gradient(165deg, #261c15, #181c2c 65%);
+    color: #f6ead0;
+    padding: 14px;
+    cursor: pointer;
+    transition: transform 0.12s ease, box-shadow 0.2s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+}
+
+.click-button:hover {
+    box-shadow: 0 10px 24px rgba(214, 107, 50, 0.2);
+}
+
+.click-button:active {
+    transform: translateY(1px) scale(0.996);
+}
+
+.click-button img {
+    width: 140px;
+    height: 140px;
+    display: block;
+    margin: 0 auto 8px;
+    filter: drop-shadow(0 6px 6px rgba(0, 0, 0, 0.35));
+}
+
+.click-button span {
+    font-size: 1.02rem;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+}
+
+.action-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+button {
+    width: 100%;
+    margin: 6px 0 4px;
+    padding: 10px 11px;
+    border: 1px solid #8b95b0;
+    border-radius: 9px;
+    background: linear-gradient(145deg, #263451, #1a2237);
+    color: #f6f0df;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.12s ease, border-color 0.12s ease;
+}
+
+button:hover:not(:disabled) {
+    border-color: #c89d53;
+}
+
+.upgrade-button {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    text-align: left;
+}
+
+.upgrade-icon {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.owned-line {
+    margin: 0 0 6px;
+    color: #e0ccaa;
+}
+
+button:disabled {
+    background: linear-gradient(145deg, #161a27, #111622);
+    border-color: #3d465d;
+    color: #76829a;
+    cursor: not-allowed;
+}
+
+.mute-button {
+    background: linear-gradient(140deg, #3d293b, #251c31);
+    border-color: #8e6aa9;
+}
+
+.prestige-button {
+    background: linear-gradient(140deg, #4a2e16, #2c1f19);
+    border-color: #cd9441;
+    color: #ffdba4;
+}
+
+.help-button {
+    margin-top: 10px;
+    background: linear-gradient(140deg, #223a4a, #1a2735);
+    border-color: #5f9cbc;
+}
+
+.help-panel {
+    margin-top: 8px;
+    border: 1px solid #4d5772;
+    border-radius: 10px;
+    padding: 10px;
+    background: rgba(10, 13, 23, 0.84);
+}
+
+.help-panel ul {
+    margin: 0;
+    padding-left: 18px;
+}
+
+.help-panel h3 {
+    margin-bottom: 6px;
+}
+
+.help-panel ul + h3 {
+    margin-top: 12px;
+}
+
+.hidden {
+    display: none;
+}
+
+.reward-message {
+    margin-bottom: 8px;
+    border: 1px solid #c58f37;
+    background: rgba(74, 51, 17, 0.75);
+    color: #ffe7b8;
+    border-radius: 8px;
+    padding: 8px;
+    font-weight: 700;
+}
+
+.reward-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.reward-badge {
+    border: 1px solid #68789f;
+    background: linear-gradient(140deg, #222a43, #1a2236);
+    color: #f2e7c7;
+    border-radius: 999px;
+    padding: 5px 11px;
+    font-size: 0.88rem;
+    font-weight: 700;
+}
+
+.prestige-badge {
+    border-color: #ce9d4b;
+    background: linear-gradient(160deg, #6f4b20, #c5912f);
+    color: #fff3cf;
+}
+
+@keyframes rise-in {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 860px) {
+    .layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 560px) {
+    body {
+        padding: 12px;
+    }
+
+    .action-row {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+}
